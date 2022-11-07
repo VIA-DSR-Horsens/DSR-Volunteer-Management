@@ -3,7 +3,7 @@ package org.via.loginapi.model;
 import javax.persistence.*;
 
 @Entity
-public class login_userModel {
+public class LoginUserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
