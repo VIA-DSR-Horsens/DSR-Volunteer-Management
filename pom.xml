@@ -22,5 +22,17 @@
     <modules>
         <module>code/auth-API</module>
         <module>code/event-server</module>
+        <module>code/database-server</module>
+        <module>code/protocol-buffers</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 </project>

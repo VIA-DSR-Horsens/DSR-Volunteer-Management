@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>auth-API</artifactId>
-    <version>1.0</version>
 
     <name>Authentication API</name>
     <description>API handling log-in and sign-ups for the Volunteer Manager</description>
@@ -32,7 +31,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
