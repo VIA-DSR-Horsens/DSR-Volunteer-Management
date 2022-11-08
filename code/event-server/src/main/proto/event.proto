@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "dk.dsrhorsens.volunteers.proto";
+
+package volunteer_manager;
+
+service Event {
+  rpc createEvent (EventRequest) returns (EventId) {}
+  rpc retrieveEvent (EventId) returns (EventResponse) {}
+  rpc updateEvent (EventRequest) returns (OperationStatus) {}
+  rpc deleteEvent (EventId) returns (OperationStatus) {}
+}
+
+message EventRequest {
+  string eventName = 2;
+  string eventTimestamp = 3;
+}
+
+message EventResponse {
+  EventId eventId = 1;
+  string eventName = 2;
+  string eventTimestamp = 3;
+}
+
+message EventId {
+  int32 id = 1;
+}
+
+message OperationStatus {
+  bool success = 1;
+}
+
+message EventList {
+  repeated EventResponse events = 1;
+}

@@ -21,5 +21,6 @@
 
     <modules>
         <module>code/auth-API</module>
+        <module>code/event-server</module>
     </modules>
 </project>
