@@ -5,6 +5,7 @@
         <groupId>dk.dsrhorsens.volunteers</groupId>
         <artifactId>DSR-Volunteering</artifactId>
         <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>auth-API</artifactId>
