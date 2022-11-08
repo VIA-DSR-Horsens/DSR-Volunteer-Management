@@ -1,17 +1,18 @@
-package org.via.loginapi.model;
+package dk.dsrhorsens.volunteers.auth.model;
+
 
 import javax.persistence.*;
 
 @Entity
-public class LoginUserModel {
+public class UserDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
-
 
     public Long getId() {
         return id;
@@ -20,7 +21,6 @@ public class LoginUserModel {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getUsername() {
         return username;
@@ -37,6 +37,4 @@ public class LoginUserModel {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

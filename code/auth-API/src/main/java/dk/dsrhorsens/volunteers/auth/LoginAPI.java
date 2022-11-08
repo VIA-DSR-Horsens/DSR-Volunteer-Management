@@ -1,12 +1,13 @@
-package org.via.loginapi;
+package dk.dsrhorsens.volunteers.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+public class LoginAPI {
 
-public class LoginApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LoginApiApplication.class,args);
+        SpringApplication.run(LoginAPI.class, args);
     }
+
 }
