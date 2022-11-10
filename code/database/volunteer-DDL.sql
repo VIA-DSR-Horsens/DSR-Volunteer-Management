@@ -2,8 +2,8 @@ CREATE SCHEMA IF NOT EXISTS volunteerManager;
 CREATE TABLE IF NOT EXISTS volunteerManager.events(
     id serial PRIMARY KEY,
     name varchar(32) NOT NULL,
-    startTime date NOT NULL,
-    endTime date NOT NULl
+    startTime varchar(5) NOT NULL,
+    endTime varchar(5) NOT NULl
 );
 CREATE TABLE IF NOT EXISTS volunteerManager.volunteer(
     id serial NOT NULL PRIMARY KEY,
