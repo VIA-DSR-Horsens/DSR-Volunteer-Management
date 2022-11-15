@@ -1,0 +1,8 @@
+// This is a css normalizer. It makes browsers render all elements more consistently.
+@forward "normalize";
+// The following three files are from the blazor server template, they are part of the default "site.css". 
+// They have been moved to a separate file by relation with each other. 
+// They are imported in the same order that they appear in the original "site.css".
+@forward "user-style-overrides";
+@forward "validation";
+@forward "blazor-error";

@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="styles\base\_index.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\FONT-LICENSE">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\fonts\open-iconic.eot">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\fonts\open-iconic.otf">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\fonts\open-iconic.svg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\fonts\open-iconic.ttf">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\fonts\open-iconic.woff">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\ICON-LICENSE">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="styles\vendor\open-iconic\_open-iconic-bootstrap.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\base\normalize.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\base\normalize.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\bootstrap.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\bootstrap.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\index.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\index.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\bootstrap-styles.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\bootstrap-styles.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
+  </ItemGroup>
+
+</Project>

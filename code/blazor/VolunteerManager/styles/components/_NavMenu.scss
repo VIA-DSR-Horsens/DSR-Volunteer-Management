@@ -1,0 +1,70 @@
+﻿@use '../abstracts' as abstract;
+
+.navbar {
+  &-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+    @media (min-width: abstract.$const-breakpoint-widescreen) {
+      display: none;
+    }
+  }
+
+  &-brand {
+    font-size: 1.1rem;
+  }
+}
+
+.oi {
+  width: 2rem;
+  font-size: 1.1rem;
+  vertical-align: text-top;
+  top: -2px;
+}
+
+.top-row {
+  height: 3.5rem;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.nav {
+  &-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &-item {
+    &:first-of-type {
+      padding-top: 1rem;
+    }
+
+    &:last-of-type {
+      padding-bottom: 1rem;
+    }
+
+    a {
+      color: #d7d7d7;
+      border-radius: 4px;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      line-height: 3rem;
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.25);
+        color: white;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+    }
+  }
+}
+
+.collapse {
+  @media (min-width: abstract.$const-breakpoint-widescreen) {
+    /* Never collapse the sidebar for wide screens */
+    display: block;
+  }
+}
+
