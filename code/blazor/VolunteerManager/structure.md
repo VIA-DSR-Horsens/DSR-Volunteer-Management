@@ -11,6 +11,6 @@
 * **./Properties/** Contains the project properties.
 * **./Components/** Contains the Blazor components used in this app.
 * **./Pages/** Contains the Razor pages that use the directive @page and are thus navigable.
-* **./Data/** Contains the program's code.
+* **./Source/** Contains the program's code.
 * **./wwwroot/** Contains the static files that are served by the app.
 * **./styles/** Contains the CSS sources in scss. This files are compiled to the web root before changes are visible.
