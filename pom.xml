@@ -20,7 +20,6 @@
     </description>
 
     <modules>
-        <module>code/auth-API</module>
         <module>code/event-server</module>
         <module>code/database-module</module>
         <module>code/protocol-buffers</module>
