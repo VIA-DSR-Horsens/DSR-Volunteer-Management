@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS administrator (
 );
 
 -- creating a table to keep track of multiple volunteers per event
--- this could be altered to become a shift instead
-CREATE TABLE IF NOT EXISTS event_participant (
+CREATE TABLE IF NOT EXISTS shift (
     event_id BIGINT REFERENCES event.event_id,
     volunteer_id BIGINT REFERENCES volunteer.volunteer_id,
     PRIMARY KEY (event_id, volunteer_id)
