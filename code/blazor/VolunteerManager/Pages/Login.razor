@@ -1,12 +1,10 @@
-﻿@page "/Login"
-
-<PageTitle>Login</PageTitle>
-
+﻿page "/Login"
 <div class="card">
-    <h3>Login</h3>
-    <form action="" method="post">
+<h3>Login</h3>
+    <form action="action_page.php" method="post">
         <div class="imgcontainer">
-            <img src=avatar-svgrepo-com.svg alt="Avatar" class="avatar">
+            <object type="image/svg+xml" data="...\VolunteerManager\icons\avatar-svgrepo-com.svg">
+            </object>
         </div>
 
         <div class="container">
@@ -21,14 +19,14 @@
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
         </div>
-
+        
         <div class="container">
             <button type="button" class="cancelbtn">Cancel</button>
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
-        <div class="container">
-            <input type="button" onclick="location.href='SignUp';" value="SignUp" />
-        </div>
+       <div class="container">
+           <button type="button" class="signupbtn">Sign Up</button>
+       </div>
     </form>
 </div>
 
@@ -37,4 +35,3 @@
     private string email = "";
     private string password = "";
 }
-
