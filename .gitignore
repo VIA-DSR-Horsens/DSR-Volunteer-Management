@@ -57,8 +57,13 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-## .NET Core
-#project.lock.json
-#project.fragment.lock.json
-#artifacts/
+## Visual Studio
+/**/.vs/
 *.vsidx
+
+### Documentation
+## Asta Files
+*.asta.lock
+
+## Office Temporary Files
+~$*
