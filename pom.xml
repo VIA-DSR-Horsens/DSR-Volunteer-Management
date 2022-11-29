@@ -21,7 +21,6 @@
 
     <modules>
         <module>code/event-server</module>
-        <module>code/database-module</module>
         <module>code/protocol-buffers</module>
     </modules>
 
