@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UseRazorSourceGenerator>false</UseRazorSourceGenerator>
   </PropertyGroup>
 
 
@@ -64,5 +65,6 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
   </ItemGroup>
+  
 
 </Project>

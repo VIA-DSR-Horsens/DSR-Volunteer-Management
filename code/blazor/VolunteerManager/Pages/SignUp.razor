@@ -1,7 +1,7 @@
 ﻿@page "/SignUp"
 <div class= "card">
 <h3>SignUp</h3>
-<form action="action_page.php" style="border:1px solid #ccc">
+<form action="Login.razor" style="border:1px solid #ccc">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
@@ -29,9 +29,9 @@
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn">Sign Up</button>
     </div>
-    <div>
-      <button type="submit" class="loginbtn">Login</button>
-  </div>
+   <div class="container">
+   <input type="button" onclick="location.href='Login';" value="Login" />
+   </div>
   </div>
 </form>
 </div>
