@@ -18,6 +18,9 @@
     <artifactId>protocol-buffers</artifactId>
     <packaging>pom</packaging>
 
+    <name>Protocol Buffers</name>
+    <description>Protobuf definitions that can be used to generate code for gRPC</description>
+
     <dependencies>
         <dependency>
             <groupId>net.devh</groupId>

@@ -15,9 +15,11 @@ service EventService {
 }
 
 message EventInfo {
-  string eventName = 1;
-  string start_time = 2;
-  string end_time = 3;
+  string event_name = 1;
+  Date event_date = 2;
+  int32 start_time= 3;
+  int32 end_time = 4;
+  string location = 5;
 }
 
 message IndexedEvent {
@@ -26,9 +28,15 @@ message IndexedEvent {
 }
 
 message EventId {
-  int32 id = 1;
+  int32 event_id = 1;
 }
 
 message EventList {
   repeated IndexedEvent events = 1;
+}
+
+message Date {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
 }
