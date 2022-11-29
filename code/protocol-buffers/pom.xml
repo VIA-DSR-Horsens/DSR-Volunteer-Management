@@ -12,6 +12,7 @@
 
     <modules>
         <module>event-protocol</module>
+        <module>volunteer-protocol</module>
     </modules>
 
     <groupId>dk.dsrhorsens.volunteers.proto</groupId>
@@ -43,9 +44,13 @@
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                 <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:3.9.0:exe:${os.detected.classifier}</protocArtifact>
                     <pluginId>grpc-java</pluginId>
+                    <protocArtifact>com.google.protobuf:protoc:3.9.0:exe:${os.detected.classifier}</protocArtifact>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.24.0:exe:${os.detected.classifier}</pluginArtifact>
+                    <additionalProtoPathElements>
+                        <pathElement>./event-protocol/src/main/proto/</pathElement>
+                        <pathElement>./volunteer-protocol/src/main/proto/</pathElement>
+                    </additionalProtoPathElements>
                 </configuration>
                 <executions>
                     <execution>
