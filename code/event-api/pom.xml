@@ -10,10 +10,10 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>event-server</artifactId>
+    <artifactId>event-api</artifactId>
 
-    <name>Events Server</name>
-    <description>Server handling creation, scheduling and organization of events for the Volunteer Manager</description>
+    <name>Events API</name>
+    <description>API handling creation, scheduling and organization of events for the Volunteer Manager</description>
 
     <dependencies>
         <dependency>
