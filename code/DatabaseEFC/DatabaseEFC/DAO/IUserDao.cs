@@ -2,6 +2,9 @@ using DatabaseEFC.Utils;
 
 namespace DatabaseEFC.DAO;
 
+/// <summary>
+/// Used to execute queries related to volunteers, managers and administrators
+/// </summary>
 public interface IUserDao
 {
     

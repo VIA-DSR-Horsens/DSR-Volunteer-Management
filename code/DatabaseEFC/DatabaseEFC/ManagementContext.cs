@@ -26,7 +26,7 @@ public class ManagementContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema(dbCreds.Schema);
+        modelBuilder.HasDefaultSchema(dbCreds.Schema); // setting the default schema
         var eventE = modelBuilder.Entity<Event>();
         eventE.HasKey(e => e.EventId);
         
