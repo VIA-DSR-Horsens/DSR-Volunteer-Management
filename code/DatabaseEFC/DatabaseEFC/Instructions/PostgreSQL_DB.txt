@@ -1,0 +1,16 @@
+1. Make sure you have PostgreSQL installed on your system
+2. Open terminal
+3. Change directory where the DatabaseEFC project lies (so that in it is the Program.cs file)
+4. If you don't have a dbconnection.json file in the DatabaseEFC directory already, create one.
+It's a JSON file with necessary information to create and execute queries on the database.
+The default file looks like this:
+{"Username":"postgres","Password":"postgres","Host":"localhost","Database": "postgres","Schema": "public"}
+
+5. Change username and password in the JSON file to your desired postgres user's credentials
+6. Change host to your desired destination host (recommended localhost)
+7. Change database to your desired database (must exist on your PostgreSQL server beforehand!)
+8. Change schema to your desired schema to use
+
+9. In the terminal run this command (remember, must be in DatabaseEFC directory!):
+dotnet ef database update
+
