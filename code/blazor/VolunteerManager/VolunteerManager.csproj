@@ -65,12 +65,6 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Pages\SignUp.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
   
 
 </Project>
