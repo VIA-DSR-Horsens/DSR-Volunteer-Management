@@ -1,15 +1,24 @@
-using System.Threading.Tasks;
 using Grpc.Net.Client;
 using VolunteerManager;
 
+
+Console.WriteLine("press any key to continue...");
+Console.ReadLine();
 // The port number must match the port of the gRPC server.
 using var channel = GrpcChannel.ForAddress("https://localhost:4566");
-var client = new CreateEvent.CreateEventChannel(channel);
-var reply = await client.SayHelloAsync(
-    new HelloRequest { Name = "GreeterClient" });
-Console.WriteLine("Greeting: " + reply.Message);
-Console.WriteLine("Press any key to exit...");
-Console.ReadKey();
+var client = new CreateEventService.CreateEventServiceClient(channel);
+var reply = client.createEvent(new CreateEventInfo
+{
+    EventName = "Halloween Party",
+    EventDate = "28.10.2022",
+    StartTime = 22,
+    EndTime = 2,
+    Location = "VIA University College"
+});
+Console.WriteLine("Event Id: " + reply.EventId);
+Console.WriteLine("press any key to exit");
+Console.ReadLine();
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +42,3 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
 app.Run();
-
-public class CreateEvent
-{
-}
-
