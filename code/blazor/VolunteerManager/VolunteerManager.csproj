@@ -83,8 +83,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="GrpcServer.Automation" Version="0.0.1-beta-002" />
   </ItemGroup>
   
-
 </Project>
