@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Grpc.Net.Client;
-using VolunteerManager;
 using Microsoft.AspNetCore.Components.Authorization;
+using VolunteerManager;
 using VolunteerManager.Authentication;
 
 
