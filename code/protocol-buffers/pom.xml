@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0</version>
     <parent>
         <artifactId>DSR-Volunteering</artifactId>
         <groupId>dk.dsrhorsens.volunteers</groupId>
@@ -44,13 +43,9 @@
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                 <configuration>
-                    <pluginId>grpc-java</pluginId>
                     <protocArtifact>com.google.protobuf:protoc:3.9.0:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.24.0:exe:${os.detected.classifier}</pluginArtifact>
-                    <additionalProtoPathElements>
-                        <pathElement>./event-protocol/src/main/proto/</pathElement>
-                        <pathElement>./volunteer-protocol/src/main/proto/</pathElement>
-                    </additionalProtoPathElements>
                 </configuration>
                 <executions>
                     <execution>
