@@ -1,7 +1,7 @@
 package dk.dsrhorsens.volunteers;
 
 import com.google.protobuf.Empty;
-import dk.dsrhorsens.volunteers.proto.*;
+import dk.dsrhorsens.volunteers.proto.event.*;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 
