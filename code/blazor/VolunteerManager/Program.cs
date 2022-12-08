@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Components.Authorization;
+using VolunteerManager.Authentication;
+
 using Grpc.Net.Client;
-using VolunteerManager;
 
 
 Console.WriteLine("press any key to continue...");
