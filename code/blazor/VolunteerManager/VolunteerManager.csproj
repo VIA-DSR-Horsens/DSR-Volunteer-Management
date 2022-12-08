@@ -67,12 +67,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\SignUp.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
   </ItemGroup>
 
