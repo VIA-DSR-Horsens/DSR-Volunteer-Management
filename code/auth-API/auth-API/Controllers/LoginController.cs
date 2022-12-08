@@ -1,3 +1,4 @@
+using auth_API.DTO;
 using auth_API.Logic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ public class LoginController : ControllerBase
 	/// <param name="credentials">The user's credentials</param>
 	/// <returns>The login cookie used for future requests</returns>
 	[HttpPost]
-	public async Task<ActionResult<string>> Login([FromBody] User credentials)
+	public async Task<ActionResult<string>> Login([FromBody] UserDto credentials)
 	{
 		var loginCookie = authLogic.Login(credentials.Email, credentials.Password);
 		if (loginCookie == null)

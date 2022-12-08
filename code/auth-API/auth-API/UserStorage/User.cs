@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace auth_API; 
 
 /// <summary>
@@ -9,7 +7,6 @@ public class User {
 	/// <summary>
 	/// The user's username
 	/// </summary>
-	[Required]
 	public string Email { get; set; }
 	
 	/// <summary>
@@ -20,6 +17,5 @@ public class User {
 	/// <summary>
 	/// The user's password
 	/// </summary>
-	[Required]
 	public string Password { get; set; }
 }
