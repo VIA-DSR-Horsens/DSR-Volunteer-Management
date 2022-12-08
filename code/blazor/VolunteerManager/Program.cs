@@ -1,15 +1,12 @@
-using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Components.Authorization;
-using VolunteerManager;
 using VolunteerManager.Authentication;
-
 
 Console.WriteLine("press any key to continue...");
 Console.ReadLine();
 // The port number must match the port of the gRPC server.
 using var channel = GrpcChannel.ForAddress("https://localhost:4566");
-var client = new CreateEventService.CreateEventServiceClient(channel);
+/*var client = new CreateEventService.CreateEventServiceClient(channel);
 var reply = client.createEvent(new CreateEventInfo
 {
     EventName = "Halloween Party",
@@ -20,8 +17,7 @@ var reply = client.createEvent(new CreateEventInfo
 });
 Console.WriteLine("Event Id: " + reply.EventId);
 Console.WriteLine("press any key to exit");
-Console.ReadLine();
-
+Console.ReadLine();*/
 
 var builder = WebApplication.CreateBuilder(args);
 

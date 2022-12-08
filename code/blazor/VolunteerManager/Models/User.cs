@@ -1,25 +1,26 @@
 namespace VolunteerManager.Models; 
 
+/// <summary>
+/// The user's information besides authentication data
+/// </summary>
 public class User {
-    // Authentication
+    // Authorization
     /// <summary>
-    /// The user's email used for authentication
+    /// The authorization cookie used to authorize
     /// </summary>
-    public string Email { get; set; }
-    /// <summary>
-    /// The user's password used for authentication
-    /// </summary>
-    public string Password { get; set; }
-    /// <summary>
-    /// The cookie given to the user upon authenticating
-    /// </summary>
-    public string AuthenticationCookie { get; set; }
+    public string AuthCookie { get; set; } = null!;
 
     // Properties
     /// <summary>
+    /// The user's email
+    /// </summary>
+    public string Email { get; set; } = null!;
+
+    /// <summary>
     /// The user's full name
     /// </summary>
-    public string Name { get; set; }
+    public string FullName { get; set; } = null!;
+
     /// <summary>
     /// How many shifts has the volunteer taken in total
     /// </summary>
@@ -28,22 +29,28 @@ public class User {
     /// The overall rating of the volunteer
     /// </summary>
     public long Rating { get; set; }
+    /// <summary>
+    /// The shifts the user is currently assigned to. Value is shift id
+    /// </summary>
+    public ICollection<string> Shifts { get; set; } = null!;
 
-    // Permissions
     /// <summary>
-    /// Can the user create new events
+    /// The shifts which the user wants to have. Value is shift id
     /// </summary>
-    public bool CreateEvents { get; set; }
+    public ICollection<string> RequestedShifts { get; set; } = null!;
+
     /// <summary>
-    /// Can the user assign a manager to an event
+    /// Events which the user is currently managing. Value is event id
     /// </summary>
-    public bool AssignManagerToEvent { get; set; }
+    public ICollection<string> EventsManaged { get; set; } = null!;
+
+    // Role related stuff
     /// <summary>
-    /// Which events, if any, does the user manage. Value is EventId
+    /// Whether the user is a manager
     /// </summary>
-    public ICollection<string> ManagedEvents { get; set; }
+    public bool IsManager { get; set; }
     /// <summary>
-    /// To which shifts 
+    /// Whether the user is an administrator
     /// </summary>
-    public ICollection<string> AssignedShifts { get; set; }
+    public bool IsAdministrator { get; set; }
 }
