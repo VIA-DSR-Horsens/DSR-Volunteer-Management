@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css.map" />
     <_ContentIncludedByDefault Remove="wwwroot\css\base\normalize.css" />
