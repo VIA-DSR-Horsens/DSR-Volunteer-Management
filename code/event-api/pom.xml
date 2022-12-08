@@ -21,5 +21,11 @@
             <artifactId>event-protocol</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.lognet</groupId>
+            <artifactId>grpc-spring-boot-starter</artifactId>
+            <version>4.9.0</version>
+        </dependency>
+
     </dependencies>
 </project>

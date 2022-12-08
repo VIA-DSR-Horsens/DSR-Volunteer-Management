@@ -65,6 +65,19 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
   </ItemGroup>
-  
 
+  <ItemGroup>
+    <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.21.10" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.50.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.51.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="GrpcServer.Automation" Version="0.0.1-beta-002" />
+  </ItemGroup>
+  
 </Project>
