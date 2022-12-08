@@ -1,6 +1,7 @@
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Components.Authorization;
 using VolunteerManager.Authentication;
+using VolunteerManager.Services;
 
 Console.WriteLine("press any key to continue...");
 Console.ReadLine();
@@ -25,6 +26,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthenticationStateProvider>();
+builder.Services.AddScoped<IAuthManager, AuthManagerImpl>();
+builder.Services.AddScoped<IUserService, UserServiceImpl>();
 
 var app = builder.Build();
 
