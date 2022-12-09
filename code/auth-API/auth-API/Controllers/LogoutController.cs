@@ -1,10 +1,19 @@
+using auth_API.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace auth_API.Controllers; 
 
 [ApiController]
 [Route("[controller]")]
-public class LogoutController : ControllerBase {
+public class LogoutController : ControllerBase
+{
+	private IAuthLogic authLogic;
+
+	public LogoutController(IAuthLogic authLogic)
+	{
+		this.authLogic = authLogic;
+	}
+	
 	/// <summary>
 	/// The method to logout a user
 	/// </summary>
@@ -12,6 +21,11 @@ public class LogoutController : ControllerBase {
 	/// <returns>True, that the user was logged out</returns>
 	[HttpPost]
 	public async Task<ActionResult<bool>> Logout([FromBody] string cookie) {
-		return true;
+		if (authLogic.Logout(cookie))
+		{
+			return true;
+		}
+
+		return StatusCode(400, "Invalid cookie");
 	}
 }

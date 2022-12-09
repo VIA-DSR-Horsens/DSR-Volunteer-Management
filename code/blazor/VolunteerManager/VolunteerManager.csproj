@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\base\index.css.map" />
     <_ContentIncludedByDefault Remove="wwwroot\css\base\normalize.css" />
@@ -64,6 +60,10 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\bootstrap-styles.css.map" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
   </ItemGroup>
 
   <ItemGroup>
