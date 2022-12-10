@@ -48,13 +48,45 @@ public class AuthManagerImpl : IAuthManager
 
     public async Task LogoutAsync()
     {
+        // Making a HTTP request to log out
+        // getting the cookie from claims
+        string cookie = "";
+        foreach (var c in cachedClaims.Claims)
+        {
+            if (c.Type == ClaimTypes.Name)
+            {
+                cookie = c.Value;
+                break;
+            }
+        }
+        
+        // sending the http request
+        using HttpClient httpClient = new HttpClient();
+        var logoutRequestContent = new StringContent(
+            JsonSerializer.Serialize(cookie),
+            Encoding.UTF8,
+            "application/json"
+        );
+        HttpResponseMessage logoutResponse =
+            await httpClient.PostAsync("https://localhost:7006/Logout", logoutRequestContent);
+        if (!logoutResponse.IsSuccessStatusCode)
+        {
+            throw new Exception($"An error occoured while logging out! Http Status: {logoutResponse.StatusCode}," +
+                                $"Message: {logoutResponse.ReasonPhrase}");
+        }
+        
+        // Clearing the user from browser cache
         await ClearUserFromCacheAsync(); // remove the user object from browser cache
         ClaimsPrincipal principal = CreateClaimsPrincipal(null); // create a new ClaimsPrincipal with nothing.
         cachedClaims = principal;
         OnAuthStateChanged?.Invoke(principal); // notify about change in authentication state
     }
 
-    public async Task<ClaimsPrincipal> GetAuthAsync() // this method is called by the authentication framework, whenever user credentials are reguired
+    /// <summary>
+    /// This method is called by the authentication framework, whenever user credentials are required
+    /// </summary>
+    /// <returns></returns>
+    public async Task<ClaimsPrincipal> GetAuthAsync()
     {
         if (cachedClaims.Identity == null)
             return cachedClaims;
@@ -66,6 +98,10 @@ public class AuthManagerImpl : IAuthManager
         return principal;
     }
 
+    /// <summary>
+    /// Get the saved user data from browser cache
+    /// </summary>
+    /// <returns>The user data, if saved</returns>
     private async Task<User?> GetUserFromCacheAsync()
     {
         string userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
@@ -74,29 +110,46 @@ public class AuthManagerImpl : IAuthManager
         return user;
     }
 
+    /// <summary>
+    /// Create a new claims principal based off of provided user data
+    /// </summary>
+    /// <param name="user">The user's data</param>
+    /// <returns>Claims principal based off of user's data</returns>
     private static ClaimsPrincipal CreateClaimsPrincipal(User? user)
     {
         if (user != null)
         {
-            ClaimsIdentity identity = ConvertUserAuthToClaimsIdentity(user);
+            ClaimsIdentity identity = ConvertUserToClaimsIdentity(user);
             return new ClaimsPrincipal(identity);
         }
 
         return new ClaimsPrincipal();
     }
 
+    /// <summary>
+    /// Cache the user data in browser
+    /// </summary>
+    /// <param name="user">The user data to cache</param>
     private async Task CacheUserAsync(User user)
     {
         string serialisedData = JsonSerializer.Serialize(user);
         await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "userInfo", serialisedData);
     }
 
+    /// <summary>
+    /// Clear the user data from browser's cache
+    /// </summary>
     private async Task ClearUserFromCacheAsync()
     {
         await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "userInfo", "");
     }
 
-    private static ClaimsIdentity ConvertUserAuthToClaimsIdentity(User user)
+    /// <summary>
+    /// Converts the user's data into a claims identity object
+    /// </summary>
+    /// <param name="user">The user data to convert</param>
+    /// <returns>Converted data</returns>
+    private static ClaimsIdentity ConvertUserToClaimsIdentity(User user)
     {
         // here we take the information of the User object and convert to Claims
         // this is (probably) the only method, which needs modifying for your own user type

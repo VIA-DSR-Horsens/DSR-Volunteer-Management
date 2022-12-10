@@ -11,6 +11,11 @@
 * **./Properties/** Contains the project properties.
 * **./Components/** Contains the Blazor components used in this app.
 * **./Pages/** Contains the Razor pages that use the directive @page and are thus navigable.
-* **./Source/** Contains the program's code.
+* **./Authentication/** Contains the program's code related to authentication.
+* **./DTO/** Contains the program's code that is commonly shared between classes or used in web requests.
+* **./Models/** Contains various classes that are used only internally in the program
+* **./Services/** Contains services to split request code away from other code.
+* **./Protos/** Contains proto files, which are used to generate code used within the program.
+* **./Exceptions/** Contains custom exceptions, which are not present in standard .NET
 * **./wwwroot/** Contains the static files that are served by the app.
 * **./styles/** Contains the CSS sources in scss. This files are compiled to the web root before changes are visible.
