@@ -30,7 +30,6 @@ message LoggedInUserInfo {
   int64 shifts_taken = 3;
   int64 rating = 4;
   repeated int64 shifts = 5;
-  repeated int64 requested_shifts = 6;
   repeated int64 events_managed = 7;
   bool is_manager = 8;
   bool is_administrator = 9;

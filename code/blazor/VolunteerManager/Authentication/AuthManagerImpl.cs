@@ -162,7 +162,6 @@ public class AuthManagerImpl : IAuthManager
             new Claim("Rating", user.Rating+""),
             new Claim("Shifts", JsonSerializer.Serialize(user.Shifts)),
             new Claim("EventsManaged", JsonSerializer.Serialize(user.EventsManaged)),
-            new Claim("RequestedShifts", JsonSerializer.Serialize(user.RequestedShifts)),
             new Claim("IsManager", user.IsManager.ToString()),
             new Claim("IsAdministrator", user.IsAdministrator.ToString())
         };

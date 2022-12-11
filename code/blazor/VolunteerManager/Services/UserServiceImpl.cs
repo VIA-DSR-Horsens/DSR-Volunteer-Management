@@ -33,8 +33,7 @@ public class UserServiceImpl : UserService.UserServiceClient, IUserService
             Rating = response.Rating,
             ShiftsTaken = response.ShiftsTaken,
             Shifts = response.Shifts,
-            EventsManaged = response.EventsManaged,
-            RequestedShifts = response.RequestedShifts
+            EventsManaged = response.EventsManaged
         };
 
         return converted;
