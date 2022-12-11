@@ -35,4 +35,9 @@ public class Shift
     /// </summary>
     [Required]
     public string EndTime { get; set; }
+    
+    /// <summary>
+    /// Whether the volunteer's shift has been accepted by the event
+    /// </summary>
+    public bool? Accepted { get; set; }
 }

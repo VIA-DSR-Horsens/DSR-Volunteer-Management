@@ -8,9 +8,10 @@ namespace DatabaseEFC.DTO;
 public class Volunteer
 {
     /// <summary>
-    /// The id assigned to the volunteer
+    /// The UUID assigned to the volunteer
     /// </summary>
-    public long? VolunteerId { get; init; }
+    [Required]
+    public long VolunteerId { get; init; }
     
     /// <summary>
     /// The volunteer's full name

@@ -54,6 +54,11 @@ public class EventController : ControllerBase
         return converted;
     }
 
+    /// <summary>
+    /// Create a new event in the database
+    /// </summary>
+    /// <param name="eventDTO">Information about the event to create</param>
+    /// <returns>The created event, if successful</returns>
     [HttpPost]
     public async Task<ActionResult<Event>> Create([FromBody] Event eventDTO) {
         try
@@ -76,6 +81,11 @@ public class EventController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Get information about an event from it's event id
+    /// </summary>
+    /// <param name="id">The id of the event</param>
+    /// <returns>Information about an event, if successful</returns>
     [HttpGet]
     [Route("{id:long}")]
     public async Task<ActionResult<Event>> GetById([FromRoute] long id)
