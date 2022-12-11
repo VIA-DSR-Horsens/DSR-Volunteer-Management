@@ -8,9 +8,10 @@ namespace DatabaseEFC.Utils;
 public class Volunteer
 {
     /// <summary>
-    /// The primary key of volunteer
+    /// The primary key of volunteer, acting also as UUID
     /// </summary>
     [Key]
+    [Required]
     public long VolunteerId { get; set; }
 
     /// <summary>
@@ -38,7 +39,7 @@ public class Volunteer
     public long Rating { get; set; }
 
     /// <summary>
-    /// The shifts volunteer is currently assigned to
+    /// Shifts that the volunteer is assigned to or wants to take
     /// </summary>
     public ICollection<Shift>? Shifts { get; set; }
 }

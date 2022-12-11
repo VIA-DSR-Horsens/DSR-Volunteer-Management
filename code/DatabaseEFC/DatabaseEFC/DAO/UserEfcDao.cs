@@ -18,10 +18,11 @@ public class UserEfcDao : IUserDao
     {
         EntityEntry<Volunteer> newUser = await context.Volunteers.AddAsync(new Volunteer
         {
-           Email = volunteer.Email,
-           FullName = volunteer.FullName,
-           Rating = volunteer.Rating,
-           ShiftsTaken = volunteer.ShiftsTaken
+            VolunteerId = volunteer.VolunteerId,
+            Email = volunteer.Email,
+            FullName = volunteer.FullName,
+            Rating = volunteer.Rating,
+            ShiftsTaken = volunteer.ShiftsTaken
         });
         await context.SaveChangesAsync();
         return newUser.Entity;

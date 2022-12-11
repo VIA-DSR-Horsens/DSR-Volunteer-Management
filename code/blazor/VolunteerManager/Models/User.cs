@@ -30,19 +30,14 @@ public class User {
     /// </summary>
     public long Rating { get; set; }
     /// <summary>
-    /// The shifts the user is currently assigned to. Value is shift id
+    /// The shifts the user is currently assigned to or wants to partake in. Value is shift id
     /// </summary>
-    public ICollection<string> Shifts { get; set; } = null!;
-
-    /// <summary>
-    /// The shifts which the user wants to have. Value is shift id
-    /// </summary>
-    public ICollection<string> RequestedShifts { get; set; } = null!;
+    public ICollection<long> Shifts { get; set; } = null!;
 
     /// <summary>
     /// Events which the user is currently managing. Value is event id
     /// </summary>
-    public ICollection<string> EventsManaged { get; set; } = null!;
+    public ICollection<long> EventsManaged { get; set; } = null!;
 
     // Role related stuff
     /// <summary>

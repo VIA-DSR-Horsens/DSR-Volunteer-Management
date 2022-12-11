@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "dk.dsrhorsens.volunteers.proto.user";
+option csharp_namespace = "VolunteerManager.UserProto";
+
+package dsr.user;
+
+service UserService {
+  rpc authenticate (AuthenticationRequest) returns (LoggedInUserInfo) {}
+  rpc signUp (NewUser) returns (LoggedInUserInfo) {}
+}
+
+// To get logged in user's details
+message AuthenticationRequest {
+  string authentication_cookie = 1;
+}
+
+// To sign up and give information to the java server
+message NewUser {
+  string full_name = 1;
+  string email = 2;
+  string authentication_cookie = 3;
+}
+
+// The returned details for the logged in user
+message LoggedInUserInfo {
+  string email = 1;
+  string full_name = 2;
+  int64 shifts_taken = 3;
+  int64 rating = 4;
+  repeated int64 shifts = 5;
+  repeated int64 events_managed = 7;
+  bool is_manager = 8;
+  bool is_administrator = 9;
+}

@@ -3,6 +3,7 @@ using VolunteerManager;
 using Microsoft.AspNetCore.Components.Authorization;
 using VolunteerManager.Authentication;
 using VolunteerManager.Services;
+using VolunteerManager.UserProto;
 
 
 Console.WriteLine("press any key to continue...");

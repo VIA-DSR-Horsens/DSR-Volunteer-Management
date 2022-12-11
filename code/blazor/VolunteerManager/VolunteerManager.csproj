@@ -64,6 +64,7 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\User.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,7 +72,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Protobuf Include="Protos\User.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.21.10" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.21.11" />
     <PackageReference Include="Grpc.Net.Client" Version="2.50.0" />
     <PackageReference Include="Grpc.Tools" Version="2.51.0">
       <PrivateAssets>all</PrivateAssets>

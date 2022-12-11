@@ -17,6 +17,11 @@ public class VolunteerController : ControllerBase
         userEfc = efc;
     }
 
+    /// <summary>
+    /// Creates a new volunteer in the database
+    /// </summary>
+    /// <param name="volunteer">The volunteer to create</param>
+    /// <returns>Created volunteer, if successful</returns>
     [HttpPost]
     public async Task<ActionResult<Volunteer>> Create([FromBody] Volunteer volunteer) {
         try
@@ -45,6 +50,11 @@ public class VolunteerController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Get information about a volunteer from their UUID
+    /// </summary>
+    /// <param name="id">The volunteer's UUID</param>
+    /// <returns>The information about the volunteer, if successful</returns>
     [HttpGet]
     [Route("{id:long}")]
     public async Task<ActionResult<Volunteer>> GetById([FromRoute] long id)

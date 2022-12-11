@@ -1,0 +1,7 @@
+If you modify the database then you need to also generate a migration for the changes to take effect.
+
+The migration is generated as such:
+dotnet ef migrations add <CommitMessage>
+
+The commit message is just like in Git to inform what changes were made in the database.
+After that follow the PostgreSQL_DB instructions to generate/update the database on your machine.
