@@ -49,9 +49,28 @@ public interface IUserDao
     Task<Administrator> GetAdministratorAsync(long administratorId);
 
     /// <summary>
-    /// Update volunteer data
+    /// Removes the volunteer from the manager role
     /// </summary>
-    /// <param name="user">The new data to overwrite with</param>
-    /// <returns>The new volunteer data</returns>
-    Task<Volunteer> UpdateAsync(Volunteer user);
+    /// <param name="managerId">The manager id to remove</param>
+    /// <returns>Completed task</returns>
+    Task DeleteManagerByIdAsync(long managerId);
+    /// <summary>
+    /// Removes the volunteer from the administrator role
+    /// </summary>
+    /// <param name="administratorId">The administrator id to remove</param>
+    /// <returns>Completed task</returns>
+    Task DeleteAdministratorByIdAsync(long administratorId);
+    /// <summary>
+    /// Removes the volunteer from the manager role (Will also remove from administrator!)
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id to remove from manager position</param>
+    /// <param name="providedManager">Optionally provide the manager object</param>
+    /// <returns>Completed task</returns>
+    Task DeleteManagerByVolunteerAsync(long volunteerId, Manager? providedManager = null);
+    /// <summary>
+    /// Removes the volunteer from the administrator role
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id to remove from administrator position</param>
+    /// <returns>Completed task</returns>
+    Task DeleteAdministratorByVolunteerAsync(long volunteerId);
 }

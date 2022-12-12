@@ -8,10 +8,10 @@ namespace DatabaseEFC.DTO;
 public class Volunteer
 {
     /// <summary>
-    /// The UUID assigned to the volunteer
+    /// The UUID assigned to the volunteer. Sent as string to not lose precision
     /// </summary>
     [Required]
-    public long VolunteerId { get; init; }
+    public string VolunteerId { get; init; }
     
     /// <summary>
     /// The volunteer's full name
@@ -26,19 +26,19 @@ public class Volunteer
     public string Email { get; set; } = null!;
 
     /// <summary>
-    /// The amount of shifts the volunteer has already taken
+    /// The amount of shifts the volunteer has already taken. Sent as string to not lose precision (64bit)
     /// </summary>
     [Required]
-    public long ShiftsTaken { get; set; }
+    public string ShiftsTaken { get; set; }
 
     /// <summary>
-    /// Shifts that are currently assigned to the volunteer
+    /// Shifts that are currently assigned to the volunteer. Sent as string to not lose precision
     /// </summary>
-    public ICollection<long>? Shifts { get; set; }
+    public ICollection<string>? Shifts { get; set; }
 
     /// <summary>
-    /// The overall rating of the volunteer
+    /// The overall rating of the volunteer. Sent as string to not lose precision (64bit int)
     /// </summary>
     [Required]
-    public long Rating { get; set; }
+    public string Rating { get; set; }
 }

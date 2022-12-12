@@ -10,11 +10,11 @@ namespace DatabaseEFC.Controllers;
 [Route("[controller]")]
 public class EventController : ControllerBase
 {
-    private IEventDao eventEfc;
+    private IEventDao efc;
 
     public EventController(IEventDao efc)
     {
-        eventEfc = efc;
+        this.efc = efc;
     }
 
     /// <summary>
@@ -26,10 +26,10 @@ public class EventController : ControllerBase
     {
         Event converted = new Event
         {
-            EventId = eventDAO.EventId,
+            EventId = eventDAO.EventId+"",
             Date = eventDAO.Date,
             EventName = eventDAO.EventName,
-            Managers = new List<long>()
+            Managers = new List<string>()
         };
         if (eventDAO.Location != null)
             converted.Location = eventDAO.Location;
@@ -39,15 +39,15 @@ public class EventController : ControllerBase
             converted.EndTime = eventDAO.EndTime;
         foreach (var m in eventDAO.Managers)
         {
-            converted.Managers.Add(m.ManagerId);
+            converted.Managers.Add(m.ManagerId+"");
         }
 
         if (eventDAO.Shifts != null)
         {
-            converted.Shifts = new List<long>();
+            converted.Shifts = new List<string>();
             foreach (var s in eventDAO.Shifts)
             {
-                converted.Shifts.Add(s.ShiftId);
+                converted.Shifts.Add(s.ShiftId+"");
             }
         }
 
@@ -63,13 +63,17 @@ public class EventController : ControllerBase
     public async Task<ActionResult<Event>> Create([FromBody] Event eventDTO) {
         try
         {
-            var created = await eventEfc.CreateAsync(eventDTO);
+            var created = await efc.CreateAsync(eventDTO);
             return ConvertDaoToDto(created);
         }
         catch (DbUpdateException e)
         {
             Program.PrintError(e);
             return StatusCode(500, "Error while saving data to database!");
+        }
+        catch (InvalidDataException e)
+        {
+            return StatusCode(400, e.Message);
         }
         catch (NotFoundException e)
         {
@@ -92,8 +96,53 @@ public class EventController : ControllerBase
     {
         try
         {
-            var eventDAO = await eventEfc.GetByIdAsync(id);
+            var eventDAO = await efc.GetByIdAsync(id);
             return ConvertDaoToDto(eventDAO);
+        }
+        catch (NotFoundException e)
+        {
+            return StatusCode(404, e.Message);
+        }
+        catch (Exception e)
+        {
+            Program.PrintError(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    /// <summary>
+    /// Gets the shifts of the event
+    /// </summary>
+    /// <param name="id">The event id whose shifts to get</param>
+    /// <returns>A list of shifts</returns>
+    [HttpGet]
+    [Route("{id:long}/shifts")]
+    public async Task<ActionResult<IList<Shift>>> GetShifts([FromRoute] long id)
+    {
+        try
+        {
+            var eventDAO = await efc.GetByIdAsync(id);
+            if (eventDAO.Shifts == null)
+            {
+                return new List<Shift>();
+            }
+
+            var shifts = new List<Shift>();
+            foreach (var sh in eventDAO.Shifts)
+            {
+                var shiftDTO = new Shift
+                {
+                    Accepted = sh.Accepted,
+                    EndTime = sh.EndTime,
+                    EventId = sh.Event.EventId + "",
+                    ShiftId = sh.ShiftId + "",
+                    StartTime = sh.StartTime,
+                    VolunteerId = sh.Volunteer.VolunteerId + ""
+                };
+                shifts.Add(shiftDTO);
+            }
+
+            return shifts;
         }
         catch (NotFoundException e)
         {

@@ -8,13 +8,17 @@ namespace DatabaseEFC.DTO;
 public class Manager
 {
     /// <summary>
-    /// The id assigned to the manager
+    /// The id assigned to the manager. Sent as string to not lose precision
     /// </summary>
-    public long? ManagerId { get; set; }
+    public string? ManagerId { get; set; }
     
     /// <summary>
-    /// The volunteer id of the manager
+    /// The volunteer id of the manager. Sent as string to not lose precision
     /// </summary>
     [Required]
-    public long VolunteerId { get; set; }
+    public string VolunteerId { get; set; }
+    /// <summary>
+    /// A list of events that the manager is currently managing. Sent as string to not lose precision
+    /// </summary>
+    public IList<string>? EventsManaged { get; set; }
 }

@@ -8,9 +8,9 @@ namespace DatabaseEFC.DTO;
 public class Event
 {
     /// <summary>
-    /// The id assigned to the event
+    /// The id assigned to the event. Sent as string to not lose precision
     /// </summary>
-    public long? EventId { get; set; }
+    public string? EventId { get; set; }
     
     /// <summary>
     /// The name of the event
@@ -40,13 +40,13 @@ public class Event
     public string? Location { get; set; }
 
     /// <summary>
-    /// A list of manager ids, who are managing the event
+    /// A list of manager ids, who are managing the event. Sent as string to not lose precision
     /// </summary>
     [Required]
-    public ICollection<long> Managers { get; set; } = null!;
+    public ICollection<string> Managers { get; set; } = null!;
 
     /// <summary>
-    /// A list of shift ids, which are a part of this event
+    /// A list of shift ids, which are a part of this event. Sent as string to not lose precision
     /// </summary>
-    public ICollection<long>? Shifts { get; set; }
+    public ICollection<string>? Shifts { get; set; }
 }

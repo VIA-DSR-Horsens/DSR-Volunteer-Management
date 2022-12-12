@@ -1,9 +1,14 @@
 using System.Text.Json;
 using DatabaseEFC;
 using DatabaseEFC.DAO;
+using DatabaseEFC.DAO.Implementations;
 using DatabaseEFC.Utils;
 
 public class Program {
+    /// <summary>
+    /// Prints an error to console and the inner error (if it exists) of the exception
+    /// </summary>
+    /// <param name="e">The exception whose error to print</param>
     public static void PrintError(Exception e)
     {
         Console.WriteLine("=====> An error occured! <=====");
@@ -31,6 +36,7 @@ public class Program {
         // registering stuff
         builder.Services.AddScoped<IUserDao, UserEfcDao>();
         builder.Services.AddScoped<IEventDao, EventEfcDao>();
+        builder.Services.AddScoped<IShiftDao, ShiftEfcDao>();
         builder.Services.AddDbContext<ManagementContext>();
 
         var app = builder.Build();
