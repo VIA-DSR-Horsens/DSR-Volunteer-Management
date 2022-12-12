@@ -23,6 +23,8 @@
         <module>code/event-api</module>
         <module>code/protocol-buffers</module>
         <module>code/spring-server</module>
+        <module>code/protocol-buffers/shift-protocol</module>
+        <module>code/protocol-buffers/user-protocol</module>
     </modules>
 
     <dependencies>

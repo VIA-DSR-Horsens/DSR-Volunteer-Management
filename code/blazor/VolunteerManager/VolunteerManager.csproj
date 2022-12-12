@@ -64,16 +64,22 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
-    <Protobuf Include="Protos\User.proto" />
+    <Protobuf Include="Protos\Shift.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\User.proto" GrpcServices="Client" />
   </ItemGroup>
+
 
   <ItemGroup>
     <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <Protobuf Include="Protos\Shift.proto" GrpcServices="Client" />
+  </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos\User.proto" GrpcServices="Client" />
   </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.21.10" />
