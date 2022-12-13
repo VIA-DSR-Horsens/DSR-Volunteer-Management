@@ -16,12 +16,14 @@ public class EventEfcDao : IEventDao
     
     public async Task<Event> GetByIdAsync(long id)
     {
-        var eventDAO = await context.Events.FindAsync(id);
-        if (eventDAO == null)
-        {
+        var query = context.Events.Include(v => v.Managers)
+            .Include(v => v.Shifts)
+            .AsQueryable();
+        var events = await query.Where(v => v.EventId == id).ToListAsync();
+        if (events.Count < 1)
             throw new NotFoundException($"Event with id {id} not found!");
-        }
-        return eventDAO;
+        
+        return events[0];
     }
 
     public async Task<Event> CreateAsync(DTO.Event eventDTO)

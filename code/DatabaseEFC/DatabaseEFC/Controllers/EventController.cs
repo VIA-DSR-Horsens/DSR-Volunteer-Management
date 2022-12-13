@@ -11,10 +11,12 @@ namespace DatabaseEFC.Controllers;
 public class EventController : ControllerBase
 {
     private IEventDao efc;
+    private IShiftDao shiftEfc;
 
-    public EventController(IEventDao efc)
+    public EventController(IEventDao efc, IShiftDao shiftEfc)
     {
         this.efc = efc;
+        this.shiftEfc = shiftEfc;
     }
 
     /// <summary>
@@ -130,14 +132,16 @@ public class EventController : ControllerBase
             var shifts = new List<Shift>();
             foreach (var sh in eventDAO.Shifts)
             {
+                // we need to call the method to get more in depth information about the shift
+                var fullShift = await shiftEfc.GetAsync(sh.ShiftId);
                 var shiftDTO = new Shift
                 {
-                    Accepted = sh.Accepted,
-                    EndTime = sh.EndTime,
-                    EventId = sh.Event.EventId + "",
-                    ShiftId = sh.ShiftId + "",
-                    StartTime = sh.StartTime,
-                    VolunteerId = sh.Volunteer.VolunteerId + ""
+                    Accepted = fullShift.Accepted,
+                    EndTime = fullShift.EndTime,
+                    EventId = fullShift.Event.EventId + "",
+                    ShiftId = fullShift.ShiftId + "",
+                    StartTime = fullShift.StartTime,
+                    VolunteerId = fullShift.Volunteer.VolunteerId + ""
                 };
                 shifts.Add(shiftDTO);
             }

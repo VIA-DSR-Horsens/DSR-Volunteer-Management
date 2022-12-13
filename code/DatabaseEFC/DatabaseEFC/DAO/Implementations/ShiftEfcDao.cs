@@ -16,7 +16,9 @@ public class ShiftEfcDao : IShiftDao
     
     public async Task<Shift> GetAsync(long id)
     {
-        IQueryable<Shift> query = context.Shifts.AsQueryable();
+        IQueryable<Shift> query = context.Shifts.Include(v => v.Volunteer)
+            .Include(v => v.Event)
+            .AsQueryable();
         query = query.Where(v => v.ShiftId == id);
         List<Shift> result = await query.ToListAsync();
         
@@ -77,7 +79,9 @@ public class ShiftEfcDao : IShiftDao
         }
         
         // getting existing shift info
-        IQueryable<Shift> shiftQuery = context.Shifts.AsQueryable();
+        IQueryable<Shift> shiftQuery = context.Shifts.Include(v => v.Volunteer)
+            .Include(v => v.Event)
+            .AsQueryable();
         shiftQuery = shiftQuery.Where(v => v.ShiftId+"" == shiftDTO.ShiftId);
         List<Shift> shiftResult = await shiftQuery.ToListAsync();
         
@@ -87,19 +91,13 @@ public class ShiftEfcDao : IShiftDao
         }
         
         // converting to DAO shift
-        Shift sh = new Shift
-        {
-            ShiftId = shiftResult[0].ShiftId,
-            Volunteer = shiftResult[0].Volunteer,
-            Event = shiftResult[0].Event,
-            Accepted = shiftDTO.Accepted,
-            EndTime = shiftDTO.EndTime,
-            StartTime = shiftDTO.StartTime
-        };
+        shiftResult[0].Accepted = shiftDTO.Accepted;
+        shiftResult[0].StartTime = shiftDTO.StartTime;
+        shiftResult[0].EndTime = shiftDTO.EndTime;
 
         // attempting to create the new shift in database
-        context.Shifts.Update(sh);
+        context.Shifts.Update(shiftResult[0]);
         await context.SaveChangesAsync();
-        return sh;
+        return shiftResult[0];
     }
 }

@@ -28,8 +28,7 @@ public class Volunteer
     /// <summary>
     /// The amount of shifts the volunteer has already taken. Sent as string to not lose precision (64bit)
     /// </summary>
-    [Required]
-    public string ShiftsTaken { get; set; }
+    public string? ShiftsTaken { get; set; }
 
     /// <summary>
     /// Shifts that are currently assigned to the volunteer. Sent as string to not lose precision
@@ -39,6 +38,5 @@ public class Volunteer
     /// <summary>
     /// The overall rating of the volunteer. Sent as string to not lose precision (64bit int)
     /// </summary>
-    [Required]
-    public string Rating { get; set; }
+    public string? Rating { get; set; }
 }
