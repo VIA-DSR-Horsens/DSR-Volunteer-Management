@@ -14,7 +14,12 @@ public class Administrator
     public long AdministratorId { get; set; }
 
     /// <summary>
-    /// The manager which the administrator extends
+    /// The volunteer which the administrator extends
+    /// </summary>
+    [Required]
+    public Volunteer Volunteer { get; set; }
+    /// <summary>
+    /// The manager which is also the volunteer
     /// </summary>
     [Required]
     public Manager Manager { get; set; }

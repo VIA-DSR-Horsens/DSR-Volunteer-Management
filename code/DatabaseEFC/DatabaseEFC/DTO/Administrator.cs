@@ -8,13 +8,17 @@ namespace DatabaseEFC.DTO;
 public class Administrator
 {
     /// <summary>
-    /// The id assigned to the administrator
+    /// The id assigned to the administrator. Sent as string to not lose precision
     /// </summary>
-    public long? AdministratorId { get; set; }
+    public string? AdministratorId { get; set; }
     
     /// <summary>
-    /// The manager id of the administrator
+    /// The volunteer id of the administrator. Sent as string to not lose precision
     /// </summary>
     [Required]
-    public long ManagerId { get; set; }
+    public string VolunteerId { get; set; }
+    /// <summary>
+    /// The id of the volunteer's manager role. Sent as string to not lose precision
+    /// </summary>
+    public string? ManagerId { get; set; }
 }

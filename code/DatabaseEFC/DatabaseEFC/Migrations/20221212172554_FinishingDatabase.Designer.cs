@@ -2,6 +2,7 @@
 using DatabaseEFC;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseEFC.Migrations
 {
     [DbContext(typeof(ManagementContext))]
-    partial class ManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20221212172554_FinishingDatabase")]
+    partial class FinishingDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,15 +32,10 @@ namespace DatabaseEFC.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("AdministratorId"));
 
-                    b.Property<long>("ManagerId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("VolunteerId")
                         .HasColumnType("bigint");
 
                     b.HasKey("AdministratorId");
-
-                    b.HasIndex("ManagerId");
 
                     b.HasIndex("VolunteerId");
 
@@ -171,19 +168,11 @@ namespace DatabaseEFC.Migrations
 
             modelBuilder.Entity("DatabaseEFC.Utils.Administrator", b =>
                 {
-                    b.HasOne("DatabaseEFC.Utils.Manager", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DatabaseEFC.Utils.Volunteer", "Volunteer")
                         .WithMany()
                         .HasForeignKey("VolunteerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Manager");
 
                     b.Navigation("Volunteer");
                 });

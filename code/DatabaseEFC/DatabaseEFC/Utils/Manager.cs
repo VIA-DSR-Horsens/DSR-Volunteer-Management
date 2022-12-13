@@ -23,5 +23,5 @@ public class Manager
     /// <summary>
     /// Optional list of events which the manager is currently managing
     /// </summary>
-    public ICollection<Event>? EventsManaged { get; set; }
+    public IList<Event>? EventsManaged { get; set; }
 }

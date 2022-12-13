@@ -41,10 +41,10 @@ public class Event
     /// <summary>
     /// Optional shifts which the event has
     /// </summary>
-    public ICollection<Shift>? Shifts { get; set; }
+    public IList<Shift>? Shifts { get; set; }
     /// <summary>
     /// The managers who are managing the event
     /// </summary>
     [Required]
-    public ICollection<Manager> Managers { get; set; } = null!;
+    public IList<Manager> Managers { get; set; } = null!;
 }

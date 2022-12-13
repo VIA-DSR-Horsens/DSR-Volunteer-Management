@@ -42,6 +42,12 @@ public interface IUserDao
     /// <returns>The manager</returns>
     Task<Manager> GetManagerAsync(long managerId);
     /// <summary>
+    /// Get manager by volunteer id
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id who might be a manager</param>
+    /// <returns>The manager</returns>
+    Task<Manager> GetManagerByVolunteerAsync(long volunteerId);
+    /// <summary>
     /// Get the administrator based off id
     /// </summary>
     /// <param name="administratorId">The administrator's id</param>
@@ -49,9 +55,35 @@ public interface IUserDao
     Task<Administrator> GetAdministratorAsync(long administratorId);
 
     /// <summary>
-    /// Update volunteer data
+    /// Get the administrator by volunteer id
     /// </summary>
-    /// <param name="user">The new data to overwrite with</param>
-    /// <returns>The new volunteer data</returns>
-    Task<Volunteer> UpdateAsync(Volunteer user);
+    /// <param name="volunteerId">The volunteer id who might be an administrator</param>
+    /// <returns>The administrator</returns>
+    Task<Administrator> GetAdministratorByVolunteerAsync(long volunteerId);
+
+    /// <summary>
+    /// Removes the volunteer from the manager role
+    /// </summary>
+    /// <param name="managerId">The manager id to remove</param>
+    /// <returns>Completed task</returns>
+    Task DeleteManagerByIdAsync(long managerId);
+    /// <summary>
+    /// Removes the volunteer from the administrator role
+    /// </summary>
+    /// <param name="administratorId">The administrator id to remove</param>
+    /// <returns>Completed task</returns>
+    Task DeleteAdministratorByIdAsync(long administratorId);
+    /// <summary>
+    /// Removes the volunteer from the manager role (Will also remove from administrator!)
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id to remove from manager position</param>
+    /// <param name="providedManager">Optionally provide the manager object</param>
+    /// <returns>Completed task</returns>
+    Task DeleteManagerByVolunteerAsync(long volunteerId, Manager? providedManager = null);
+    /// <summary>
+    /// Removes the volunteer from the administrator role
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id to remove from administrator position</param>
+    /// <returns>Completed task</returns>
+    Task DeleteAdministratorByVolunteerAsync(long volunteerId);
 }

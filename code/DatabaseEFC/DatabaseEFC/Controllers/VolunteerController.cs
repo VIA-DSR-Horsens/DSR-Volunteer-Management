@@ -10,11 +10,11 @@ namespace DatabaseEFC.Controllers;
 [Route("[controller]")]
 public class VolunteerController : ControllerBase
 {
-    private IUserDao userEfc;
+    private IUserDao efc;
 
     public VolunteerController(IUserDao efc)
     {
-        userEfc = efc;
+        this.efc = efc;
     }
 
     /// <summary>
@@ -26,18 +26,22 @@ public class VolunteerController : ControllerBase
     public async Task<ActionResult<Volunteer>> Create([FromBody] Volunteer volunteer) {
         try
         {
-            var created = await userEfc.CreateAsync(volunteer);
+            var created = await efc.CreateAsync(volunteer);
 
             // converts the response into DTO
             Volunteer converted = new Volunteer
             {
-                VolunteerId = created.VolunteerId,
+                VolunteerId = created.VolunteerId+"",
                 FullName = created.FullName,
                 Email = created.Email,
-                Rating = created.Rating,
-                ShiftsTaken = created.ShiftsTaken
+                Rating = created.Rating+"",
+                ShiftsTaken = created.ShiftsTaken+""
             };
             return converted;
+        }
+        catch (InvalidDataException e)
+        {
+            return StatusCode(400, e.Message);
         }
         catch (DbUpdateException e)
         {
@@ -61,25 +65,70 @@ public class VolunteerController : ControllerBase
     {
         try
         {
-            var volunteer = await userEfc.GetVolunteerAsync(id);
+            var volunteer = await efc.GetVolunteerAsync(id);
             Volunteer volunteerDTO = new Volunteer
             {
-                VolunteerId = volunteer.VolunteerId,
+                VolunteerId = volunteer.VolunteerId+"",
                 Email = volunteer.Email,
                 FullName = volunteer.FullName,
-                Rating = volunteer.Rating,
-                ShiftsTaken = volunteer.ShiftsTaken,
-                Shifts = new List<long>()
+                Rating = volunteer.Rating+"",
+                ShiftsTaken = volunteer.ShiftsTaken+"",
+                Shifts = new List<string>()
             };
             if (volunteer.Shifts != null)
             {
                 foreach (var sh in volunteer.Shifts)
                 {
-                    volunteerDTO.Shifts.Add(sh.ShiftId);
+                    volunteerDTO.Shifts.Add(sh.ShiftId+"");
                 }
             }
 
             return volunteerDTO;
+        }
+        catch (NotFoundException e)
+        {
+            return StatusCode(404, e.Message);
+        }
+        catch (Exception e)
+        {
+            Program.PrintError(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    /// <summary>
+    /// Gets the shifts of the volunteer
+    /// </summary>
+    /// <param name="id">The volunteer id whose shifts to get</param>
+    /// <returns>A list of shifts</returns>
+    [HttpGet]
+    [Route("{id:long}/Shifts")]
+    public async Task<ActionResult<IList<Shift>>> GetShifts([FromRoute] long id)
+    {
+        try
+        {
+            var volunteer = await efc.GetVolunteerAsync(id);
+            if (volunteer.Shifts == null)
+            {
+                return new List<Shift>();
+            }
+
+            var shifts = new List<Shift>();
+            foreach (var sh in volunteer.Shifts)
+            {
+                var shiftDTO = new Shift
+                {
+                    Accepted = sh.Accepted,
+                    EndTime = sh.EndTime,
+                    EventId = sh.Event.EventId+"",
+                    ShiftId = sh.ShiftId+"",
+                    StartTime = sh.StartTime,
+                    VolunteerId = sh.Volunteer.VolunteerId+""
+                };
+                shifts.Add(shiftDTO);
+            }
+
+            return shifts;
         }
         catch (NotFoundException e)
         {

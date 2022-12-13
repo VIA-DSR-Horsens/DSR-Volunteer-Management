@@ -41,5 +41,5 @@ public class Volunteer
     /// <summary>
     /// Shifts that the volunteer is assigned to or wants to take
     /// </summary>
-    public ICollection<Shift>? Shifts { get; set; }
+    public IList<Shift>? Shifts { get; set; }
 }
