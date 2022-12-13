@@ -6,6 +6,7 @@
         <artifactId>protocol-buffers</artifactId>
         <groupId>dk.dsrhorsens.volunteers.proto</groupId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>volunteer-protocol</artifactId>

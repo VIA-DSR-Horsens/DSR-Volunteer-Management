@@ -26,6 +26,5 @@
             <artifactId>grpc-spring-boot-starter</artifactId>
             <version>4.9.0</version>
         </dependency>
-
     </dependencies>
 </project>
