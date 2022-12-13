@@ -102,7 +102,7 @@ public class VolunteerController : ControllerBase
     /// <param name="id">The volunteer id whose shifts to get</param>
     /// <returns>A list of shifts</returns>
     [HttpGet]
-    [Route("{id:long}/shifts")]
+    [Route("{id:long}/Shifts")]
     public async Task<ActionResult<IList<Shift>>> GetShifts([FromRoute] long id)
     {
         try

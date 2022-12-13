@@ -18,4 +18,9 @@ public class Administrator
     /// </summary>
     [Required]
     public Volunteer Volunteer { get; set; }
+    /// <summary>
+    /// The manager which is also the volunteer
+    /// </summary>
+    [Required]
+    public Manager Manager { get; set; }
 }

@@ -74,7 +74,7 @@ public class ManagerController : ControllerBase
     }
 
     /// <summary>
-    /// Get information about a moderator from it's id
+    /// Get information about a manager from it's id
     /// </summary>
     /// <param name="id">The id of the manager</param>
     /// <returns>Information about a manager, if successful</returns>
@@ -86,6 +86,37 @@ public class ManagerController : ControllerBase
         {
             var managerDAO = await efc.GetManagerAsync(id);
             return ConvertDaoToDto(managerDAO);
+        }
+        catch (NotFoundException e)
+        {
+            return StatusCode(404, e.Message);
+        }
+        catch (Exception e)
+        {
+            Program.PrintError(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
+    /// <summary>
+    /// Get information about a manager from it's volunteer id
+    /// </summary>
+    /// <param name="id">The id of the manager</param>
+    /// <returns>Information about a manager, if successful</returns>
+    [HttpGet]
+    [Route("Volunteer/{id:long}")]
+    public async Task<ActionResult<Manager>> GetByVolunteer([FromRoute] long id)
+    {
+        try
+        {
+            var manager = await efc.GetManagerByVolunteerAsync(id);
+            var converted = ConvertDaoToDto(manager);
+            return converted;
+        }
+        catch (DbUpdateException e)
+        {
+            Program.PrintError(e);
+            return StatusCode(500, "Error while saving data to database!");
         }
         catch (NotFoundException e)
         {
@@ -138,7 +169,7 @@ public class ManagerController : ControllerBase
     /// <param name="id">The id of the volunteer</param>
     /// <returns>true, if successful</returns>
     [HttpDelete]
-    [Route("volunteer/{id:long}")]
+    [Route("Volunteer/{id:long}")]
     public async Task<ActionResult<bool>> DeleteByVolunteer([FromRoute] long id)
     {
         try

@@ -17,4 +17,8 @@ public class Administrator
     /// </summary>
     [Required]
     public string VolunteerId { get; set; }
+    /// <summary>
+    /// The id of the volunteer's manager role. Sent as string to not lose precision
+    /// </summary>
+    public string? ManagerId { get; set; }
 }

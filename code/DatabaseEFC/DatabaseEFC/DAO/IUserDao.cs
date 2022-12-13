@@ -42,11 +42,24 @@ public interface IUserDao
     /// <returns>The manager</returns>
     Task<Manager> GetManagerAsync(long managerId);
     /// <summary>
+    /// Get manager by volunteer id
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id who might be a manager</param>
+    /// <returns>The manager</returns>
+    Task<Manager> GetManagerByVolunteerAsync(long volunteerId);
+    /// <summary>
     /// Get the administrator based off id
     /// </summary>
     /// <param name="administratorId">The administrator's id</param>
     /// <returns>The administrator</returns>
     Task<Administrator> GetAdministratorAsync(long administratorId);
+
+    /// <summary>
+    /// Get the administrator by volunteer id
+    /// </summary>
+    /// <param name="volunteerId">The volunteer id who might be an administrator</param>
+    /// <returns>The administrator</returns>
+    Task<Administrator> GetAdministratorByVolunteerAsync(long volunteerId);
 
     /// <summary>
     /// Removes the volunteer from the manager role

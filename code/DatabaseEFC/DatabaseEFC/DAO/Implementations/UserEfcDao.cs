@@ -63,12 +63,24 @@ public class UserEfcDao : IUserDao
         
         // getting the volunteer
         var volunteer = await GetVolunteerAsync(volunteerId);
+        Manager manager;
+        try
+        {
+            manager = await GetManagerByVolunteerAsync(volunteerId);
+            // volunteer is already a manager, proceed with creating administrator
+        }
+        catch (NotFoundException e)
+        {
+            // volunteer isnt a manager, adding as manager first
+            manager = await CreateAsync(new DTO.Manager {VolunteerId = volunteerId+""});
+        }
+        
+        // creating the manager
         EntityEntry<Administrator> newUser = await context.Administrators.AddAsync(new Administrator
         {
-            Volunteer = volunteer
+            Volunteer = volunteer,
+            Manager = manager
         });
-        // making the administrator also a manager
-        await CreateAsync(new DTO.Manager {VolunteerId = volunteerId+""});
         await context.SaveChangesAsync();
         return newUser.Entity;
     }
@@ -98,16 +110,51 @@ public class UserEfcDao : IUserDao
         
         return managers[0];
     }
+
+    public async Task<Manager> GetManagerByVolunteerAsync(long id)
+    {
+        // checking does the volunteer actually exist
+        await GetVolunteerAsync(id);
+        
+        // getting the manager
+        var query = context.Managers.Include(v => v.Volunteer)
+            .Include(v => v.EventsManaged)
+            .AsQueryable();
+        var managers = await query.Where(v => v.Volunteer.VolunteerId == id).ToListAsync();
+
+        if (managers.Count < 1)
+            throw new NotFoundException($"Manager with volunteer id {id} not found!");
+
+        return managers[0];
+    }
     
     public async Task<Administrator> GetAdministratorAsync(long id)
     {
         // getting the administrator
         var query = context.Administrators.Include(v => v.Volunteer)
+            .Include(v => v.Manager)
             .AsQueryable();
         var administrators = await query.Where(v => v.AdministratorId == id).ToListAsync();
 
         if (administrators.Count < 1)
             throw new NotFoundException($"Administrator with id {id} not found!");
+        
+        return administrators[0];
+    }
+    
+    public async Task<Administrator> GetAdministratorByVolunteerAsync(long id)
+    {
+        // checking does the volunteer actually exist
+        await GetVolunteerAsync(id);
+        
+        // getting the administrator
+        var query = context.Administrators.Include(v => v.Volunteer)
+            .Include(v => v.Manager)
+            .AsQueryable();
+        var administrators = await query.Where(v => v.Volunteer.VolunteerId == id).ToListAsync();
+
+        if (administrators.Count < 1)
+            throw new NotFoundException($"Administrator with volunteer id {id} not found!");
         
         return administrators[0];
     }

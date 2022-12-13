@@ -40,6 +40,12 @@ It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of manager data
   2. *Status code 404*: The manager was not found.
   3. *Status code 500*: Something went wrong while getting data.
+* **GET /Manager/Volunteer/{volunteerId}:** This endpoint is meant to get manager's information from their volunteer id.
+  If the volunteer is a manager, then it returns a manager object which contains *managerId*, *volunteerId* and a list managed *eventId*.
+  It can respond with the following status codes:
+  1. *Status code 200*: Successful retrieval of manager data
+  2. *Status code 404*: The volunteer was not found or isn't a manager.
+  3. *Status code 500*: Something went wrong while getting data.
 * **DELETE /Manager/{managerId}:** This endpoint is meant to delete the manager by their id.
   If the manager exists, then it's deleted and if the volunteer was also an administrator, the administrator is also deleted.
   It can respond with the following status codes:
@@ -72,6 +78,12 @@ It can respond with the following status codes:
   It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of administrator data
   2. *Status code 404*: The administrator was not found.
+  3. *Status code 500*: Something went wrong while getting data.
+* **GET /Administrator/Volunteer/{volunteerId}:** This endpoint is meant to get administrator's information from their volunteer id.
+  If the volunteer is an administrator, then it returns an administrator object which contains *administratorId*, *volunteerId* and *managerId*.
+  It can respond with the following status codes:
+  1. *Status code 200*: Successful retrieval of administrator data
+  2. *Status code 404*: The volunteer was not found or isn't an administrator.
   3. *Status code 500*: Something went wrong while getting data.
 * **DELETE /Administrator/{administratorId}:** This endpoint is meant to delete the administrator by their id.
   If the administrator exists, then it's deleted.
