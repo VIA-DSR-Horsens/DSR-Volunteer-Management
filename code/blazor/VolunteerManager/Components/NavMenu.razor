@@ -1,26 +1,104 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">VolunteerManager</a>
+        <a class="navbar-brand" href="Index">DSR - De Studerendes Råd</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+
+<header>
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Login">
                 <span class="oi oi-plus" aria-hidden="true"></span> Login
             </NavLink>
         </div>
-    </nav>
-</div>
+        </nav>
+            <nav class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="committeesDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            Committies
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a href="DSREvents">DSR Events</a>
+                            </li>
+                            <li>
+                                <a href="KontoretFredagsbar">Kontoret Fredagsbar</a>
+                            </li>
+                            <li>
+                                <a href="CampusCafe">Campus Cafe</a>
+                            </li>
+                        </ul>
+                    </div>
+                </NavLink>
+            </nav>
+    </div>
+
+</header>
+
+<!--Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-3" style="position: fixed; bottom: 0; left: 0; width:100%">
+    <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left">
+            <div class="col-md-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-light ">DSR </h5>
+                <p>
+                    The VIA Student Council (VIA-DSR) at Campus Horsens, is an educational organization across all programs.
+
+                    Students run VIA-DSR and we, therefore, have great insight and collaboration with fellow students. We aim to provide a bridge between students and staff and as a result of this, create a better VIA University College for everyone.
+                </p>
+            </div>
+
+            <div class="col-md-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-light">Useful Links</h5>
+                <p>
+                    <a href="Components/Index.razor" class="text-light">Home</a>
+                </p>
+                <p>
+                    <a href="DSREvents" class="text-light">DSR Events</a>
+                </p>
+                <p>
+                    <a href="KontoretFredagsbar" class="text-light">Kontoret Fredagsbar</a>
+                </p>
+                <p>
+                    <a href="CampusCafe" class="text-light">Campus Cafe</a>
+                </p>
+            </div>
+
+            <div class="col-md-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-light">Address</h5>
+                <p>Banegårdsgade 2, Horsens,8700 Denmark</p>
+                <p>
+                    Mail: <a class="text-light" href="horsens.dsr@via.dk">horsens.dsr@via.dk</a>
+                </p>
+            </div>
+        </div>
+
+
+        <hr class="mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <p>
+                    Copyright ©2022 All rights reserved by:
+                    <a href="Components/Index.razor" class="text-light">
+                        <strong>DSR - De Studerendes Råd </strong>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
 @code {
     private bool _collapseNavMenu = true;

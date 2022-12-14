@@ -2,6 +2,40 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<header>
+    <div class="" onclick="">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Login">
+                <span class="oi oi-plus" aria-hidden="true"></span> Login
+            </NavLink>
+        </div>
+        </nav>
+            <nav class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="committeesDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            Committies
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a href="DSREvents">DSR Events</a>
+                            </li>
+                            <li>
+                                <a href="KontoretFredagsbar">Kontoret Fredagsbar</a>
+                            </li>
+                            <li>
+                                <a href="CampusCafe">Campus Cafe</a>
+                            </li>
+                        </ul>
+                    </div>
+                </NavLink>
+            </nav>
+    </div>
 
-Welcome to your new app.
+</header>

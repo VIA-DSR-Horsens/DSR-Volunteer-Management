@@ -1,0 +1,44 @@
+@page "/CreateEvent"
+@attribute [Authorize (Roles = "isAdministrator, isManager")]
+<PageTitle>Create Event</PageTitle>
+<h3>Create Event</h3>
+
+<div>
+    <div class="container">
+        <label for="evtname"> Event Name:</label>
+        <input type="evtname" placeholder="Event name" name="evtname" required/>
+    </div>
+    <div class="card">
+        <label for="calendar">Date:</label>
+        <input type="date" id="calendar" name="calendar" required>
+    </div>
+    <div class="container">
+        <label for="srttime"> Start Time:</label>
+        <input type="time" id="strtime" name="starttime" required/>
+    </div>
+    <div class="container">
+        <label for="endtime"> End Time:</label>
+        <input type="time" id="endtime" name="endtime" required/>
+    </div>
+    <div>
+        <label for="committees">
+            Committees:
+        </label>
+        <select name="committees" id="committees" required>
+            <option value="dsrevents">DSR Events</option>
+            <option value="campuscafe">Campus Cafe</option>
+            <option value="kontoretfredgsbar">Kontoret Fredgsbar</option>
+        </select>
+    </div>
+    <div class="container">
+        <label for="nrvolunteers"> Number of Volunteers:</label>
+        <input type="nrvolunteers" placeholder="Number of Volunteers" name="nrvolunteers" required/>
+    </div>
+    <div class="container">
+        <input type="button" onclick="" value="Create Event"/>
+    </div>
+</div>
+
+@code {
+
+}
