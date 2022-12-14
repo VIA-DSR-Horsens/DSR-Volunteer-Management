@@ -3,15 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>DSR-Volunteering</artifactId>
-        <groupId>dk.dsrhorsens.volunteers</groupId>
+        <artifactId>spring-grpc-base</artifactId>
+        <groupId>dk.dsrhorsens.volunteers.spring</groupId>
         <version>1.0</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modules>
-        <module>event-protocol</module>
+        <module>user-protocol</module>
         <module>volunteer-protocol</module>
+        <module>event-protocol</module>
+        <module>shift-protocol</module>
     </modules>
 
     <groupId>dk.dsrhorsens.volunteers.proto</groupId>
@@ -20,14 +22,6 @@
 
     <name>Protocol Buffers</name>
     <description>Protobuf definitions that can be used to generate code for gRPC</description>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-server-spring-boot-starter</artifactId>
-            <version>2.13.1.RELEASE</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <extensions>

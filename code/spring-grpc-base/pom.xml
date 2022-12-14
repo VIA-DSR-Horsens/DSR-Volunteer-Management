@@ -8,13 +8,34 @@
         <version>1.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-    <artifactId>data-api</artifactId>
+
+    <groupId>dk.dsrhorsens.volunteers.spring</groupId>
+    <artifactId>spring-grpc-base</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Spring-GRPC Base</name>
+    <description>
+        This is the base configuration for Spring-gRPC. It contains all the dependencies and plugins
+        needed to use gRPC services as Spring beans.
+    </description>
+
+    <modules>
+        <module>spring-server</module>
+        <module>grpc-api</module>
+        <module>protocol-buffers</module>
+    </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${dsr.spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>2.13.1.RELEASE</version>
         </dependency>
     </dependencies>
 </project>
