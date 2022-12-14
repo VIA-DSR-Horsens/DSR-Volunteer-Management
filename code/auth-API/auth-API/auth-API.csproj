@@ -8,7 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Protobuf.Tools" Version="3.21.11" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.50.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.51.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.12" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Protobuf Include="Protos\Authentication.proto" GrpcServices="Server" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Protobuf Include="Protos\Authentication.proto" GrpcServices="Server" />
+    </ItemGroup>
 </Project>

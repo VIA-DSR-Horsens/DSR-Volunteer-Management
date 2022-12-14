@@ -1,4 +1,3 @@
-using Grpc.Core;
 using VolunteerManager.Exceptions;
 using VolunteerManager.Models;
 using VolunteerManager.UserProto;

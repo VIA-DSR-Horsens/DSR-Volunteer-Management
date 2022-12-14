@@ -1,5 +1,7 @@
+using auth_API;
+using auth_API.DAO;
+using auth_API.DAO.Implementations;
 using auth_API.Logic;
-using auth_API.UserStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUserDb, UserDb>();
+builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IAuthLogic, AuthLogic>();
+builder.Services.AddSingleton<AuthSingleton>();
+builder.Services.AddGrpc();
+builder.Services.AddDbContext<AuthenticationContext>();
 
 var app = builder.Build();
 
@@ -21,6 +26,12 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();
+
+// grpc stuff
+app.UseRouting();
+app.UseEndpoints(endpoints => {
+	endpoints.MapGrpcService<AuthLogic>();
+});
 
 app.UseAuthorization();
 

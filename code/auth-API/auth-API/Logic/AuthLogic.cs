@@ -1,39 +1,30 @@
-using auth_API.UserStorage;
+using System.Diagnostics;
+using auth_API.AuthenticationProto;
+using auth_API.DAO;
+using Grpc.Core;
 
 namespace auth_API.Logic;
 
-public class AuthLogic : IAuthLogic
+public class AuthLogic : AuthenticationService.AuthenticationServiceBase, IAuthLogic
 {
-    private IUserDb userDb;
     /// <summary>
-    /// Currently saved cookies. Key authorization cookie, value is UUID
+    /// The user database
     /// </summary>
-    private Dictionary<string, long> cookieToUuid;
+    private readonly IUserDao userDb;
     /// <summary>
-    /// Currently saved cookies. Key UUID cookie, value is cookie
+    /// The cookie cache
     /// </summary>
-    private Dictionary<long, string> uuidToCookie;
+    private readonly AuthSingleton storage;
 
-    public AuthLogic(IUserDb userDb)
+    public AuthLogic(IUserDao userDb, AuthSingleton storage)
     {
         this.userDb = userDb;
-        cookieToUuid = new Dictionary<string, long>();
-        uuidToCookie = new Dictionary<long, string>();
+        this.storage = storage;
     }
 
-    public long? VerifyCookie(string cookie)
+    public async Task<string?> LoginAsync(string email, string password)
     {
-        if (!cookieToUuid.ContainsKey(cookie))
-        {
-            return null;
-        }
-
-        return cookieToUuid[cookie];
-    }
-    
-    public string? Login(string email, string password)
-    {
-        var loggedUser = userDb.GetUser(email);
+        var loggedUser = await userDb.GetAsync(email);
         if (loggedUser == null || !loggedUser.Password.Equals(password))
         {
             return null;
@@ -41,35 +32,72 @@ public class AuthLogic : IAuthLogic
 
         // password matches
         // checking if auth cookie already exists
-        if (uuidToCookie.ContainsKey(loggedUser.Uuid))
-        {
-            return uuidToCookie[loggedUser.Uuid];
-        }
-        
+        var cookie = storage.CookieFromUuid(loggedUser.Uuid);
+        if (cookie != null)
+            return cookie;
+
         // creating new cookie
         var r = new Random();
-        string cookie = "" + r.NextInt64();
-        while (cookieToUuid.ContainsKey(cookie))
+        cookie = "" + r.NextInt64();
+        while (storage.UuidFromCookie(cookie) != null)
         {
             cookie = "" + r.NextInt64();
         }
         
-        cookieToUuid.Add(cookie, loggedUser.Uuid);
-        uuidToCookie.Add(loggedUser.Uuid, cookie);
+        storage.NewCookie(cookie, loggedUser.Uuid);
         return cookie;
     }
 
     public bool Logout(string authCookie)
     {
-        if (!cookieToUuid.ContainsKey(authCookie))
+        if (storage.UuidFromCookie(authCookie) == null)
         {
             return false;
         }
 
-        long uuid = cookieToUuid[authCookie];
-        cookieToUuid.Remove(authCookie);
-        uuidToCookie.Remove(uuid);
-        
+        storage.RemoveCookie(authCookie);
         return true;
+    }
+    
+    // Proto stuff
+    // Handles verifying cookies and returns the user's UUID from the matching cookie
+    public override Task<VerificationResponse> verifyCookie(CookieVerification cookie, ServerCallContext context) {
+        var uuid = storage.UuidFromCookie(cookie.AuthenticationCookie);
+        if (uuid == null) {
+            //cookie not found
+            return Task.FromResult(new VerificationResponse {
+                AuthenticationCookie = cookie.AuthenticationCookie,
+                Uuid = 0,
+                ValidCookie = false
+            });
+        }
+        
+        // valid cookie
+        return Task.FromResult(new VerificationResponse {
+            AuthenticationCookie = cookie.AuthenticationCookie,
+            Uuid = uuid.Value,
+            ValidCookie = true
+        });
+    }
+
+    public override async Task startListening(EmptyMessage request, IServerStreamWriter<InvalidatedCookie> responseStream, ServerCallContext context) {
+        async void OnStorageOnCookieRemoved(string authCookie, long uuid) {
+            if (context.CancellationToken.IsCancellationRequested) {
+                storage.CookieRemoved -= OnStorageOnCookieRemoved;
+            }
+
+            await responseStream.WriteAsync(new InvalidatedCookie { AuthenticationCookie = authCookie, Uuid = uuid });
+        }
+
+        storage.CookieRemoved += OnStorageOnCookieRemoved;
+        
+        while (true) {
+            await new Task(() => {
+                Thread.Sleep(500);
+            });
+            if (context.CancellationToken.IsCancellationRequested) {
+                return;
+            }
+        }
     }
 }
