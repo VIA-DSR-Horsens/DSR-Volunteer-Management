@@ -7,7 +7,7 @@ namespace auth_API.Controllers;
 [Route("[controller]")]
 public class LogoutController : ControllerBase
 {
-	private IAuthLogic authLogic;
+	private readonly IAuthLogic authLogic;
 
 	public LogoutController(IAuthLogic authLogic)
 	{

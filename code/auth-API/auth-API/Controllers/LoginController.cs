@@ -7,7 +7,7 @@ namespace auth_API.Controllers;
 [Route("[controller]")]
 public class LoginController : ControllerBase
 {
-	private IAuthLogic authLogic;
+	private readonly IAuthLogic authLogic;
 
 	public LoginController(IAuthLogic authLogic)
 	{

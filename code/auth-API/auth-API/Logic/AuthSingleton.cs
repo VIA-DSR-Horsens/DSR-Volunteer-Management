@@ -12,10 +12,6 @@ public class AuthSingleton {
     /// Currently saved cookies. Key UUID cookie, value is cookie
     /// </summary>
     private readonly Dictionary<long, string> uuidToCookie;
-    /// <summary>
-    /// List of methods that are listening to updates for logouts. Key is Host+Peer string, value is callback method
-    /// </summary>
-    private readonly Dictionary<string, Action<string, long>> logoutListeners;
 
     public AuthSingleton() {
         cookieToUuid = new Dictionary<string, long>();
@@ -70,10 +66,7 @@ public class AuthSingleton {
         var uuid = cookieToUuid[cookie];
         cookieToUuid.Remove(cookie);
         uuidToCookie.Remove(uuid);
-
-        // notifying java servers that are listening to invalidated cookies
-        foreach (var callback in logoutListeners.Values) {
-            callback.Invoke(cookie, uuid);
-        }
+        
+        CookieRemoved.Invoke(cookie, uuid);
     }
 }
