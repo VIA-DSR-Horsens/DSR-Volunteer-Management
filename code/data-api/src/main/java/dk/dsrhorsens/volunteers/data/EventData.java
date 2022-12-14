@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * The EventData class is responsible for representing an event in the database. It is used to serialize and deserialize
  * events to and from the database. It mirrors the Event.cs class in the EFC database.
@@ -11,7 +13,7 @@ import lombok.Setter;
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class EventData {
 	@Getter @Setter
-	private long id;
+	private String id;
 	@Getter @Setter
 	private String name;
 	@Getter @Setter
@@ -22,4 +24,6 @@ public class EventData {
 	private String endTime;
 	@Getter @Setter
 	private String location;
+	@Getter @Setter
+	private List<String> Managers;
 }

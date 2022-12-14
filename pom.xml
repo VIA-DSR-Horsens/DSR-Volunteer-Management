@@ -11,6 +11,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <dsr.spring-boot.version>2.7.4</dsr.spring-boot.version>
     </properties>
 
     <name>DSR Volunteer Manager</name>
@@ -20,12 +22,7 @@
     </description>
 
     <modules>
-        <module>code/event-api</module>
-        <module>code/protocol-buffers</module>
-        <module>code/spring-server</module>
-        <module>code/shift-api</module>
-        <module>code/protocol-buffers/shift-protocol</module>
-        <module>code/protocol-buffers/user-protocol</module>
+        <module>code/spring-grpc-base</module>
         <module>code/data-api</module>
     </modules>
 
