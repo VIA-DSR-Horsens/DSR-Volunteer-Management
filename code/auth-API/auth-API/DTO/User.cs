@@ -5,7 +5,7 @@ namespace auth_API.DTO;
 /// <summary>
 /// The sole purpose of your existence to be received during login phase
 /// </summary>
-public class UserDto
+public class User
 {
     /// <summary>
     /// The user's email

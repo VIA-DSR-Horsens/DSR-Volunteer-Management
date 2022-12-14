@@ -21,11 +21,16 @@ public class LogoutController : ControllerBase
 	/// <returns>True, that the user was logged out</returns>
 	[HttpPost]
 	public async Task<ActionResult<bool>> Logout([FromBody] string cookie) {
-		if (authLogic.Logout(cookie))
-		{
-			return true;
-		}
+		try {
+			if (authLogic.Logout(cookie))
+			{
+				return true;
+			}
 
-		return StatusCode(400, "Invalid cookie");
+			return StatusCode(401, "Invalid cookie");
+		} catch (Exception e) {
+			return StatusCode(500, e.Message);
+		}
+		
 	}
 }
