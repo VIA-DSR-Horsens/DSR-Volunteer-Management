@@ -13,7 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class EventData {
 	@Getter @Setter
-	private long id;
+	private String id;
 	@Getter @Setter
 	private String name;
 	@Getter @Setter
@@ -24,4 +24,6 @@ public class EventData {
 	private String endTime;
 	@Getter @Setter
 	private String location;
+	@Getter @Setter
+	private List<String> Managers;
 }
