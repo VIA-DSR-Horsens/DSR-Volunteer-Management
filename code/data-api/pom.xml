@@ -10,6 +10,9 @@
     </parent>
     <artifactId>data-api</artifactId>
 
+    <name>Database Accessor API</name>
+    <description>API for accessing the database</description>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
