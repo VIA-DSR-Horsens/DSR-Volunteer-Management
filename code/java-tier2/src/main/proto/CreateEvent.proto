@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "dk.dsrhorsens.volunteers.proto.event";
+option csharp_namespace = "VolunteerManager";
+
+package dsr.event;
+
+service CreateEventService {
+  rpc createEvent (CreateEventInfo) returns (CreateEventId) {}
+  rpc retrieveEvent (CreateEventId) returns (IndexedCreateEvent) {}
+  rpc updateEvent (IndexedCreateEvent) returns (EmptyMessage) {}
+  rpc deleteEvent (CreateEventId) returns (EmptyMessage) {}
+  rpc listEvents (EmptyMessage) returns (CreateEventList) {}
+}
+
+message CreateEventInfo {
+  string event_name = 1;
+  string event_date = 2;
+  string start_time= 3;
+  string end_time = 4;
+  string location = 5;
+}
+
+// An empty template message
+message EmptyMessage {
+  bool im_empty = 1;
+}
+
+
+message IndexedCreateEvent {
+  CreateEventId eventId = 1;
+  CreateEventInfo eventInfo = 2;
+}
+
+message CreateEventId {
+  int64 event_id = 1;
+}
+
+message CreateEventList {
+  repeated IndexedCreateEvent events = 1;
+}
