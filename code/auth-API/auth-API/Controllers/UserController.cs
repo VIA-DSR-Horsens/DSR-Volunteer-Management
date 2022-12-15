@@ -1,5 +1,4 @@
 using auth_API.DAO;
-using auth_API.Exceptions;
 using auth_API.Logic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,8 +8,8 @@ namespace auth_API.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-	private IUserDao userLogic;
-	private IAuthLogic authLogic;
+	private readonly IUserDao userLogic;
+	private readonly IAuthLogic authLogic;
 
 	public UserController(IUserDao userLogic, IAuthLogic authLogic)
 	{
