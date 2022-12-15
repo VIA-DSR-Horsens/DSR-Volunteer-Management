@@ -113,6 +113,32 @@ public class EventController : ControllerBase
     }
 
     /// <summary>
+    /// Gets a list of all the events in the database
+    /// </summary>
+    /// <returns>A list of events</returns>
+    [HttpGet]
+    public async Task<ActionResult<List<Event>>> GetAllEvents()
+    {
+        try
+        {
+            var eventsDAO = await efc.GetAsync();
+            List<Event> eventsDTO = new List<Event>();
+
+            foreach (var e in eventsDAO)
+            {
+                eventsDTO.Add(ConvertDaoToDto(e));
+            }
+
+            return eventsDTO;
+        }
+        catch (Exception e)
+        {
+            Program.PrintError(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    /// <summary>
     /// Gets the shifts of the event
     /// </summary>
     /// <param name="id">The event id whose shifts to get</param>

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using auth_API.AuthenticationProto;
 using auth_API.DAO;
 using Grpc.Core;

@@ -29,11 +29,13 @@ app.UseHttpsRedirection();
 
 // grpc stuff
 app.UseRouting();
-app.UseEndpoints(endpoints => {
-	endpoints.MapGrpcService<AuthLogic>();
-});
-
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapGrpcService<AuthLogic>()
+		.RequireHost("*:4567");
+});
 
 app.MapControllers();
 

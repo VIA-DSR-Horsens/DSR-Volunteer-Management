@@ -60,6 +60,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\bootstrap-styles.css.map" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\vendor\open-iconic\open-iconic-bootstrap.css.map" />
+    <_ContentIncludedByDefault Remove="Pages\Commities\CampusCafe.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Commities\DSR Events.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Commities\KontoretFredagsbar.razor" />
   </ItemGroup>
 
   <ItemGroup>
