@@ -20,6 +20,7 @@ message CreateEventInfo {
   string start_time= 3;
   string end_time = 4;
   string location = 5;
+  string event_id = 6;
 }
 
 // An empty template message

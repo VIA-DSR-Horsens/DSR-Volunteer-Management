@@ -1,9 +1,21 @@
-package dk.dsrhorsens.volunteers.service.user.rest;
+package dk.dsrhorsens.volunteers.service.user.dto;
 
 /**
  * Administrator DTO class
  */
 public class Administrator {
+    public String getAdministratorId() {
+        return administratorId;
+    }
+
+    public String getVolunteerId() {
+        return volunteerId;
+    }
+
+    public String getManagerId() {
+        return managerId;
+    }
+
     private String administratorId;
     private String volunteerId;
     private String managerId;

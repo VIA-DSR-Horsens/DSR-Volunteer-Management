@@ -7,6 +7,8 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Implements the java server authentication client to communicate with authentication server
  */
@@ -43,7 +45,9 @@ public class AuthenticationClientImpl {
             // starts listening to stream of invalidated cookies
             StreamObserver<InvalidatedCookie> invalidatedObserver = new InvalidatedCookieObserver();
             try {
-                authenticationServiceStub.startListening(announceMsg, invalidatedObserver);
+                authenticationServiceStub
+                        .withDeadlineAfter(9999, TimeUnit.DAYS)
+                        .startListening(announceMsg, invalidatedObserver);
             } catch (StatusRuntimeException e) {
                 System.out.println("gRPC listening to invalidated cookies failed: "+e.getStatus());
             }
