@@ -20,4 +20,10 @@ public interface IEventDao
     /// <param name="eventDTO">The event to create</param>
     /// <returns>The newly created event</returns>
     Task<Event> CreateAsync(DTO.Event eventDTO);
+
+    /// <summary>
+    /// Gets all the events in the database
+    /// </summary>
+    /// <returns>A list of all events</returns>
+    Task<List<Event>> GetAsync();
 }

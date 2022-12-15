@@ -28,20 +28,20 @@ It can respond with the following status codes:
 ### MANAGER ENDPOINT
 * **POST /Manager/:** This endpoint is meant to allow the creation of new managers.
   It requires a manager object which only needs to contain *volunteerId*.
-  If the manager creation is successful, then it returns a manager object which contains *managerId*, *volunteerId* and a list managed *eventId*.
+  If the manager creation is successful, then it returns a manager object which contains *managerId*, *volunteerId* and a *eventsManaged* list of managed event ids.
   It can respond with the following status codes:
   1. *Status code 200*: Successful manager creation
   2. *Status code 400*: The data sent in request couldn't be parsed correctly.
   3. *Status code 404*: The volunteer was not found
   4. *Status code 500*: Either data couldn't be saved to the database or something else went wrong.
 * **GET /Manager/{managerId}:** This endpoint is meant to get manager's information from their id.
-  If the manager exists, then it returns a manager object which contains *managerId*, *volunteerId* and a list managed *eventId*.
+  If the manager exists, then it returns a manager object which contains *managerId*, *volunteerId* and a *eventsManaged* list of managed event ids.
   It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of manager data
   2. *Status code 404*: The manager was not found.
   3. *Status code 500*: Something went wrong while getting data.
 * **GET /Manager/Volunteer/{volunteerId}:** This endpoint is meant to get manager's information from their volunteer id.
-  If the volunteer is a manager, then it returns a manager object which contains *managerId*, *volunteerId* and a list managed *eventId*.
+  If the volunteer is a manager, then it returns a manager object which contains *managerId*, *volunteerId* and a *eventsManaged* list of managed event ids.
   It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of manager data
   2. *Status code 404*: The volunteer was not found or isn't a manager.
@@ -129,21 +129,25 @@ It can respond with the following status codes:
 ### EVENT ENDPOINT
 * **POST /Event/:** This endpoint is meant to allow the creation of new events.
   It requires an event object which contains *eventName*, *eventDate* and a list of *managerId*.
-  If the event creation is successful, then it returns an event object which contains *eventId*, *eventName*, *eventDate*, *startTime*, *endTime*, *location*, a list of *managerId* and a list of *shiftId*.
+  If the event creation is successful, then it returns an event object which contains *eventId*, *eventName*, *eventDate*, *startTime*, *endTime*, *location*, a *managers* list of manager ids and a *shifts* list of shift ids.
   It can respond with the following status codes:
   1. *Status code 200*: Successful event creation
   2. *Status code 400*: The data sent in request couldn't be parsed correctly.
   3. *Status code 404*: The manager was not found
   4. *Status code 500*: Either data couldn't be saved to the database or something else went wrong.
 * **GET /Event/{eventId}:** This endpoint is meant to get event's information from it's id.
-  If the event exists, then it returns an event object which contains *eventId*, *eventName*, *eventDate*, *startTime*, *endTime*, *location*, a list of *managerId* and a list of *shiftId*.
+  If the event exists, then it returns an event object which contains *eventId*, *eventName*, *eventDate*, *startTime*, *endTime*, *location*, a *managers* list of manager ids and a *shifts* list of shift ids.
   It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of event data
   2. *Status code 404*: The event was not found.
   3. *Status code 500*: Something went wrong while getting data.
+* **GET /Event/:** This endpoint is meant to get all events information from the database.
+  The event objects contain *eventId*, *eventName*, *eventDate*, *startTime*, *endTime*, *location*, a *managers* list of manager ids and a *shifts* list of shift ids.
+  It can respond with the following status codes:
+  1. *Status code 200*: Successful retrieval of event data
+  2. *Status code 500*: Something went wrong while getting data.
 * **GET /Event/{eventId}/Shifts:** This endpoint is meant to get detailed event's shifts information from it's id.
   If the event exists, then it returns a list of shift objects which contain *shiftId*, *eventId*, *volunteerId*, *startTime*, *endTime*, *accepted*.
   It can respond with the following status codes:
   1. *Status code 200*: Successful retrieval of shift data
-  2. *Status code 404*: The shift was not found.
-  3. *Status code 500*: Something went wrong while getting data.
+  2. *Status code 500*: Something went wrong while getting data.

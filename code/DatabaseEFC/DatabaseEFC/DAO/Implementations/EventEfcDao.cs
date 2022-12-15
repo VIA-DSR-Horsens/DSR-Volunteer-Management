@@ -26,6 +26,16 @@ public class EventEfcDao : IEventDao
         return events[0];
     }
 
+    public async Task<List<Event>> GetAsync()
+    {
+        var query = context.Events.Include(v => v.Managers)
+            .Include(v => v.Shifts)
+            .AsQueryable();
+        var events = await query.Where(v => true).ToListAsync();
+
+        return events;
+    }
+
     public async Task<Event> CreateAsync(DTO.Event eventDTO)
     {
         // converting to DAO event
