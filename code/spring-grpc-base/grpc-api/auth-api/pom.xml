@@ -3,33 +3,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>spring-grpc-base</artifactId>
         <groupId>dk.dsrhorsens.volunteers.spring</groupId>
+        <artifactId>grpc-api</artifactId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-server</artifactId>
-
-    <name>SpringBoot Server</name>
-    <description>The Springboot Server meant</description>
+    <artifactId>auth-api</artifactId>
 
     <dependencies>
         <dependency>
+            <groupId>dk.dsrhorsens.volunteers.proto</groupId>
+            <artifactId>user-protocol</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>dk.dsrhorsens.volunteers</groupId>
             <artifactId>data-api</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.dsrhorsens.volunteers.spring</groupId>
-            <artifactId>event-api</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.dsrhorsens.volunteers.spring</groupId>
-            <artifactId>auth-api</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
+
     </dependencies>
 </project>

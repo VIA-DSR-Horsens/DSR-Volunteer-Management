@@ -15,11 +15,11 @@ public class DatabaseAPI {
 	/**
 	 * The URL of the API.
 	 */
-	@Value ("${dsr.api.url}") private String baseURL;
+	@Value ("${dsr.data.host}") private String databaseHost;
 	/**
 	 * The port used by the API.
 	 */
-	@Value ("${dsr.api.port}") private String port;
+	@Value ("${dsr.data.port}") private String databasePort;
 
 	/**
 	 * The RestTemplate used to communicate with the API.
@@ -29,9 +29,9 @@ public class DatabaseAPI {
 	/**
 	 * Create a URL object for the resource path.
 	 */
-	public URI getAPIPath(String resourcePath) {
+	public URI getDatabasePath(String resourcePath) {
 		try {
-			return new URI(baseURL + ':' + port + resourcePath);
+			return new URI(databaseHost + ':' + databasePort + resourcePath);
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
@@ -50,14 +50,14 @@ public class DatabaseAPI {
 	}
 
 	public <U> U get(String resourcePath, Class<U> responseType) throws HttpClientErrorException {
-		return get(getAPIPath(resourcePath), responseType);
+		return get(getDatabasePath(resourcePath), responseType);
 	}
 
 	public <U> U post(String resourcePath, Object request, Class<U> responseType) throws HttpClientErrorException {
-		return post(getAPIPath(resourcePath), request, responseType);
+		return post(getDatabasePath(resourcePath), request, responseType);
 	}
 
 	public void delete(String resourcePath) throws HttpClientErrorException {
-		delete(getAPIPath(resourcePath));
+		delete(getDatabasePath(resourcePath));
 	}
 }

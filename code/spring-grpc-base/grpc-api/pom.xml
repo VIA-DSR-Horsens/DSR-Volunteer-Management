@@ -18,5 +18,14 @@
     <modules>
         <module>event-api</module>
         <module>shift-api</module>
+        <module>auth-api</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.lognet</groupId>
+            <artifactId>grpc-spring-boot-starter</artifactId>
+            <version>4.9.1</version>
+        </dependency>
+    </dependencies>
 </project>

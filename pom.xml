@@ -8,11 +8,14 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <dsr.java.version>17</dsr.java.version>
+        <maven.compiler.source>${dsr.java.version}</maven.compiler.source>
+        <maven.compiler.target>${dsr.java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <dsr.spring-boot.version>2.7.4</dsr.spring-boot.version>
+        <dsr.spring.version>5.3.23</dsr.spring.version>
+        <dsr.grpc.version>1.51.0</dsr.grpc.version>
     </properties>
 
     <name>DSR Volunteer Manager</name>

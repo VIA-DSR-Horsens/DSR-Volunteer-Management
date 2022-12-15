@@ -8,7 +8,7 @@ import io.grpc.stub.StreamObserver;
 import org.jetbrains.annotations.NotNull;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
@@ -34,17 +34,7 @@ public class EventManager extends EventServiceGrpc.EventServiceImplBase {
 		try {
 			restResponse = databaseAPI.post("/Event/", restRequest, EventData.class);
 		} catch (HttpClientErrorException restError) {
-			HttpStatusCode statusCode = restError.getStatusCode();
-			switch (statusCode.value()) {
-				case 400 ->
-						responseObserver.onError(Status.INTERNAL.withDescription("Failed to parse data").asRuntimeException());
-				case 404 -> responseObserver.onError(
-						Status.NOT_FOUND.withDescription("The requested resource was not found").asRuntimeException());
-				case 500 -> responseObserver.onError(
-						Status.INTERNAL.withDescription("An internal error occurred fetching the data").asRuntimeException());
-				default -> responseObserver.onError(
-						Status.UNKNOWN.withDescription("An unexpected error occurred").asRuntimeException());
-			}
+			handleRestError(restError, responseObserver);
 			return;
 		}
 		long eventID = restResponse != null ? Long.parseLong(restResponse.getId()) : -1;
@@ -61,15 +51,7 @@ public class EventManager extends EventServiceGrpc.EventServiceImplBase {
 		try {
 			restResponse = databaseAPI.get("/Event/" + request.getEventId(), EventData.class);
 		} catch (HttpClientErrorException restError) {
-			HttpStatusCode statusCode = restError.getStatusCode();
-			switch (statusCode.value()) {
-				case 404 -> responseObserver.onError(
-						Status.NOT_FOUND.withDescription("The requested resource was not found").asRuntimeException());
-				case 500 -> responseObserver.onError(
-						Status.INTERNAL.withDescription("An internal error occurred fetching the data").asRuntimeException());
-				default -> responseObserver.onError(
-						Status.UNKNOWN.withDescription("An unexpected error occurred").asRuntimeException());
-			}
+			handleRestError(restError, responseObserver);
 			return;
 		}
 		IndexedEvent gRPCResponse = transform(restResponse);
@@ -85,15 +67,7 @@ public class EventManager extends EventServiceGrpc.EventServiceImplBase {
 		try {
 			databaseAPI.delete("/Event/" + request.getEventId());
 		} catch (HttpClientErrorException restError) {
-			HttpStatusCode statusCode = restError.getStatusCode();
-			switch (statusCode.value()) {
-				case 404 -> responseObserver.onError(
-						Status.NOT_FOUND.withDescription("The requested resource was not found").asRuntimeException());
-				case 500 -> responseObserver.onError(
-						Status.INTERNAL.withDescription("An internal error occurred fetching the data").asRuntimeException());
-				default -> responseObserver.onError(
-						Status.UNKNOWN.withDescription("An unexpected error occurred").asRuntimeException());
-			}
+			handleRestError(restError, responseObserver);
 			return;
 		}
 		respondRequest(Empty.getDefaultInstance(), responseObserver);
@@ -102,7 +76,7 @@ public class EventManager extends EventServiceGrpc.EventServiceImplBase {
 	@Override public void listEvents(Empty request, StreamObserver<EventList> responseObserver) {
 		responseObserver.onError(
 				Status.UNIMPLEMENTED.withDescription("Unable to fetch a list from database").asRuntimeException());
-		respondRequest(null, responseObserver);
+		//		respondRequest(null, responseObserver);
 	}
 
 	private IndexedEvent transform(EventData data) {
@@ -153,5 +127,19 @@ public class EventManager extends EventServiceGrpc.EventServiceImplBase {
 		managers.add(String.valueOf(data.getMainManager().getManagerId()));
 		builder.setManagers(managers);
 		return builder;
+	}
+
+	private <U> void handleRestError(HttpClientErrorException restError, StreamObserver<U> responseObserver) {
+		HttpStatus statusCode = restError.getStatusCode();
+		switch (statusCode.value()) {
+			case 400 ->
+					responseObserver.onError(Status.INTERNAL.withDescription("Failed to parse data").asRuntimeException());
+			case 404 -> responseObserver.onError(
+					Status.NOT_FOUND.withDescription("The requested resource was not found").asRuntimeException());
+			case 500 -> responseObserver.onError(
+					Status.INTERNAL.withDescription("An internal error occurred fetching the data").asRuntimeException());
+			default -> responseObserver.onError(
+					Status.UNKNOWN.withDescription("An unexpected error occurred").asRuntimeException());
+		}
 	}
 }
