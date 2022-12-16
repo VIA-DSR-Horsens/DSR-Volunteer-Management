@@ -3,8 +3,8 @@ package dk.dsrhorsens.volunteers.service.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.dsrhorsens.volunteers.DsrVolunteerApplication;
-import dk.dsrhorsens.volunteers.service.user.dto.Shift;
-import dk.dsrhorsens.volunteers.service.user.dto.Volunteer;
+import dk.dsrhorsens.volunteers.service.dto.Shift;
+import dk.dsrhorsens.volunteers.service.dto.Volunteer;
 
 import java.io.IOException;
 import java.net.URI;

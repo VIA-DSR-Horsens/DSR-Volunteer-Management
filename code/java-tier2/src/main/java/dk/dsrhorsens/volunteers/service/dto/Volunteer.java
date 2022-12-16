@@ -1,4 +1,4 @@
-package dk.dsrhorsens.volunteers.service.user.dto;
+package dk.dsrhorsens.volunteers.service.dto;
 
 import java.util.List;
 

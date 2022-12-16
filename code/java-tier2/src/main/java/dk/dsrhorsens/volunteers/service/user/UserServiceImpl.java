@@ -5,8 +5,9 @@ import dk.dsrhorsens.volunteers.proto.user.AuthenticationRequest;
 import dk.dsrhorsens.volunteers.proto.user.LoggedInUserInfo;
 import dk.dsrhorsens.volunteers.proto.user.NewUser;
 import dk.dsrhorsens.volunteers.proto.user.UserServiceGrpc;
-import dk.dsrhorsens.volunteers.service.user.dto.Volunteer;
+import dk.dsrhorsens.volunteers.service.dto.Volunteer;
 import io.grpc.stub.StreamObserver;
+import org.checkerframework.checker.signature.qual.FieldDescriptor;
 import org.lognet.springboot.grpc.GRpcService;
 
 @GRpcService
