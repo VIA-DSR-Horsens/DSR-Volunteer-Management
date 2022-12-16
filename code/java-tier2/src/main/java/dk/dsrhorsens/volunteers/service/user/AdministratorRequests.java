@@ -1,6 +1,6 @@
 package dk.dsrhorsens.volunteers.service.user;
 
-import dk.dsrhorsens.volunteers.service.user.dto.Administrator;
+import dk.dsrhorsens.volunteers.service.dto.Administrator;
 
 /**
  * Mehtods to work with administrators on the database

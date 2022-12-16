@@ -66,14 +66,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\Event.proto" GrpcServices="Client" />
     <Protobuf Include="Protos\Shift.proto" GrpcServices="Client" />
     <Protobuf Include="Protos\User.proto" GrpcServices="Client" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Protobuf Include="Protos\CreateEvent.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\Event.proto" GrpcServices="Client" />
   </ItemGroup>
   
   <ItemGroup>
